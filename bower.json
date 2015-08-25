@@ -11,6 +11,9 @@
     "ember-resolver": "~0.1.18",
     "jquery": "^1.11.3",
     "loader.js": "ember-cli/loader.js#3.2.1",
-    "qunit": "~1.18.0"
+    "qunit": "~1.18.0",
+    "moment": "~2.10.6",
+    "twix": "~0.7.2",
+    "pickadate": "~3.5.6"
   }
 }
