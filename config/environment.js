@@ -5,7 +5,7 @@ module.exports = function(environment) {
     modulePrefix: 'lacer',
     environment: environment,
     baseURL: '/',
-    locationType: 'auto',
+    locationType: 'hash',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -16,6 +16,11 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+    contentSecurityPolicyHeader: 'Content-Security-Policy',
+    contentSecurityPolicy: {
+      // ... other stuff here
+      'connect-src': "'self' http://localhost:8888"
     }
   };
 
@@ -25,6 +30,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+
   }
 
   if (environment === 'test') {
@@ -42,6 +48,7 @@ module.exports = function(environment) {
   if (environment === 'production') {
 
   }
+
 
   return ENV;
 };
