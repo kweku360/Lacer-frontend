@@ -5,6 +5,7 @@ module.exports = function(environment) {
     modulePrefix: 'lacer',
     environment: environment,
     baseURL: '/',
+    "liveReload": false,
     locationType: 'hash',
     EmberENV: {
       FEATURES: {
@@ -20,7 +21,10 @@ module.exports = function(environment) {
     contentSecurityPolicyHeader: 'Content-Security-Policy',
     contentSecurityPolicy: {
       // ... other stuff here
-      'connect-src': "'self' http://localhost:8888"
+      'connect-src': "'self' http://localhost:8888 https://www.googleapis.com/urlshortener/v1/url http://41.77.66.36/bulksms/api/sendsms",
+      'default-src': "'self'"
+      //'object-src': "'self' http://localhost:8888/lacerapi/uploads/"
+      //'connect-src': "'self' http://104.131.190.2:8009"
     }
   };
 

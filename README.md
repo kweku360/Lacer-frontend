@@ -1,17 +1,19 @@
 # Lacer
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+This is a Setup guide for the frontend of lacer which uses EMBER JS Framework.
 
 ## Prerequisites
 
 You will need the following things properly installed on your computer.
 
-* [Git](http://git-scm.com/)
 * [Node.js](http://nodejs.org/) (with NPM)
 * [Bower](http://bower.io/)
-* [Ember CLI](http://www.ember-cli.com/)
+* [Ember CLI](http://www.ember-cli.com/) 
+install ember cli as follows 
+`npm install -g ember-cli`
 * [PhantomJS](http://phantomjs.org/)
+Install Phantom Js As follows
+`npm install -g phantomjs`
 
 ## Installation
 
