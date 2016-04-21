@@ -1,0 +1,57 @@
+<div class="view-heading pure-u-1-1">
+    <div class="text bolt-light">{{suitInfo.suitNumber}} Notification Detail</div>
+    <div class="breadcrumb flat flat bolt-light">
+      {{#link-to  'suits' activeClass=""}}
+          Home
+      {{/link-to}}
+      {{#link-to  'manage' activeClass=""}}
+        Manage Cases
+    {{/link-to}}
+      {{#link-to  'manage.notifications'}}
+          Case Notifications
+    {{/link-to}}
+      {{#link-to  'manage.notificationdetail'}}
+           Notification Detail
+    {{/link-to}}
+        </div>
+</div>
+
+<div class="middle-box pure-u-19-24">
+    <div class="wraps">
+        <section class="section-form">
+            <!--<p>-->
+                <!--Please Enter Information Accurately-->
+            <!--</p>-->
+          <div class="coa"> <img src="/assets/images/coasmall.jpg"></div>
+            <div class="pure-u-1-1">
+                <table class="pure-table pure-table-striped">
+                    <thead>
+                    <tr>
+                        <th>Recipient</th>
+                        <th>Sms Status</th>
+                        <th>Message Id</th>
+                        <th>Time Stamp</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+{{#each notificationDetailsArray}}
+                        <tr>
+                            <td>{{this.suitnumber}}</td>
+                            <td>{{this.msgstatus}}</td>
+                            <td>{{this.messageid}}</td>
+                            <td>{{this.timesent}}</td>
+                            <td> <button {{action "resendsms" this.index}} class="button">resend</button></td>
+                        </tr>
+
+
+                        {{/each}}</tbody>
+                </table>
+                <div class="form-footer__cta">
+                </div>
+            </div>
+    </section>
+    </div>
+
+</div>

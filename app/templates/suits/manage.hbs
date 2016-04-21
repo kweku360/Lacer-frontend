@@ -1,0 +1,71 @@
+<div class="view-heading pure-u-1-1">
+    <div class="text bolt-light">Manage Suits</div>
+    <div class="breadcrumb flat bolt-light">
+      {{#link-to  'dashboard' activeClass=""}}
+          Home
+      {{/link-to}}
+      {{#link-to  'suits' activeClass=""}}
+          Suits
+      {{/link-to}}
+      {{#link-to  'suits'}}
+          Manage Suits
+      {{/link-to}}
+       </div>
+</div>
+<div class="submenu-box pure-u-6-24">
+    <div class="item">
+        <div class="item-text bolt-light"> Suit Number : </div>
+    </div>
+    <div class="item {{visualStatus}}">
+        <div {{action "manage"}} class=" item-text bolt-light"> Suit Info</div>
+        <i class="fa fa-pencil-square-o fa-2x"></i>
+    </div>
+    <div class="item {{visualStatus}}">
+        <div {{action "view"}} class="item-text bolt-light"> Plaintiffs</div>
+         <b class="number-circle bolt-light">3</b>
+    </div>
+    <div class="item {{visualStatus}}">
+        <div {{action "view"}} class="item-text bolt-light"> Plaintiffs Lawyers</div>
+       <b class="number-circle bolt-light">5</b>
+    </div>
+
+    <div class="item {{visualStatus}}">
+        <div {{action "view"}} class="item-text bolt-light"> Defendants</div>
+         <b class="number-circle bolt-light">5</b>
+    </div>
+    <div class="item {{visualStatus}}">
+        <div {{action "view"}} class="item-text bolt-light"> Defendants</div>
+        <b class="number-circle bolt-light">3</b>
+    </div>
+</div>
+<div class="middle-box pure-u-16-24">
+    <div class="wraps">
+        <section class="section-form">
+            <!--<p>-->
+            <!--Please Enter Information Accurately-->
+            <!--</p>-->
+            <div class="coa"> <img src="/assets/images/coasmall.jpg"></div>
+            <form name="signup" class="form" style="text-align: center" id="newSuit" novalidate>
+                <div class="pure-g">
+                    <div class="form-group pure-u-5-5">
+                        <label for="name" class="form-label form-label">
+                           Enter Suit Number:
+                        </label>
+
+                        <div class="form-addon">
+                            <div class="form-addon__addon">
+                                <i class="fa fa-clone"></i>
+                            </div>
+                          {{input type="text" required="true" class="form-input" value=suitNumber placeholder="Suit Number"}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-footer__cta">
+                    <button type="submit" {{action "findSuit"}} class="button">proceed</button>
+                </div>
+
+            </form></section>
+    </div>
+
+</div>

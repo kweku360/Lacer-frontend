@@ -1,0 +1,52 @@
+<div class="current-view">
+    ADD NEW SUIT
+</div>
+<div class="head">
+
+    <span class="tase">Enter Suit Info </span>
+    <span class="tasemini">please enter information accurately </span>
+
+</div>
+<form class="pure-form pure-form-aligned">
+    <fieldset class="form-fieldset">
+        <div class="pure-control-group">
+            <label for="suitno">Suit Number</label>
+          {{input focus-out="suitNumberValidator" value=suitInfo.suitNumber placeholder="Suit Number"}}
+
+          <span class="{{viewErrors.suitNumberFocused}}">
+            {{#if viewErrors.suitNumber}}
+            <span class="overstated error-class">{{fa-icon "fa-exclamation-circle " }}{{viewErrors.suitNumberText}}</span>
+            {{else}}
+            <span class="success-class">{{fa-icon "fa-check-circle" }}</span>
+            {{/if}}
+          </span>
+
+        </div>
+
+        <div class="pure-control-group">
+            <label for="suittype">Suit Type</label>
+            <select  id="suittype">
+                <option>Writ Of Summons</option>
+            </select>
+        </div>
+
+        <div class="pure-control-group pure-g">
+            <label style="margin-top: 10px;" class="pure-u-1-3" for="suitdate">Suit Date</label>
+          <div class="pure-u-1-3">
+            {{pick-a-date value=suitInfo.suitDate  date=date placeholder="select a date" }}
+           </div>
+             <span class="pure-u-1-3 {{viewErrors.suitDateFocused}}">
+               {{#if viewErrors.suitDate}}
+                   <span class="overstated error-class">{{fa-icon "fa-exclamation-circle " }}{{viewErrors.suitDateText}}</span>
+               {{else}}
+                   <span class="success-class">{{fa-icon "fa-check-circle" }}</span>
+               {{/if}}
+             </span>
+        </div>
+
+
+        <div class="pure-controls control-btns">
+            <button type="submit" {{action "addPlaintiffs"}} class="pure-button pure-button-primary">Next</button>
+        </div>
+    </fieldset>
+</form>

@@ -1,0 +1,218 @@
+<div class="view-heading pure-u-1-1">
+    <div class="text bolt-light">Plaintiffs</div>
+    <div class="breadcrumb flat bolt-light">
+      {{#link-to  'suits' activeClass=""}}
+          Home
+      {{/link-to}}
+      {{#link-to  'manage'  activeClass=""}}
+          Manage Case
+      {{/link-to}}
+      {{#link-to  'manage.plaintiffs'}}
+          plaintiff
+      {{/link-to}}
+       </div>
+</div>
+<div class="submenu-box pure-u-4-24">
+  {{manage-detail action=""}}
+</div>
+<div class="middle-box pure-u-19-24">
+    <div class="wraps">
+        <section class="section-form">
+            <!--<p>-->
+            <!--Please Enter Information Accurately-->
+            <!--</p>-->
+            <div class="coa"> <img src="/assets/images/coasmall.jpg"></div>
+            <form name="signup" class="form" id="addPlaintiff" novalidate>
+                <div style="border: 0px solid red" class="pure-g">
+                    <div class="form-group pure-u-10-24">
+                        <label for="name" class="form-label form-label--required">
+                            Plaintiff Name:
+                        </label>
+                        <div class="form-addon">
+                            <div class="form-addon__addon">
+                                <i class="fa fa-clone"></i>
+                            </div>
+                          {{input type="text" required="true" class="form-input" value=plaintiffInfo.plaintiffName
+                          placeholder="Name"}}
+
+                        </div>
+                    </div>
+                    <div class="form-group pure-u-10-24">
+                        <label for="name" class="form-label form-label--required">
+                            Plaintiff Address :
+                        </label>
+                        <div class="form-addon" data-states-for="name">
+                            <div class="form-addon__addon">
+                                <i class="fa fa-home"></i>
+                            </div>
+
+                          {{input type="text" required="true" class="form-input" value=plaintiffInfo.plaintiffAddress
+                          placeholder="Address"}}
+                        </div>
+                    </div>
+                    <!--<div class="form-group form-group pure-u-5-24">-->
+                        <!--<label for="date" class="form-label form-label--required">-->
+                            <!--Phone Number 1:-->
+                        <!--</label>-->
+                        <!--<div class="form-addon" data-states-for="name">-->
+                            <!--<div class="form-addon__addon">-->
+                                <!--<i class="fa fa-phone"></i>-->
+                            <!--</div>-->
+                          <!--{{!input type="number" data-parsley-required="true" class="form-input"-->
+                          <!--value=plaintiffInfo.plaintiffContact1-->
+                          <!--placeholder="landline"}}-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group form-group pure-u-5-24">-->
+                        <!--<label for="date" class="form-label ">-->
+                            <!--Phone Number 2:-->
+                        <!--</label>-->
+                        <!--<div class="form-addon" data-states-for="name">-->
+                            <!--<div class="form-addon__addon">-->
+                                <!--<i class="fa fa-phone"></i>-->
+                            <!--</div>-->
+                          <!--{{!input type="number" required="true" class="form-input" value=plaintiffInfo.plaintiffContact2-->
+                          <!--placeholder="mobile"}}-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <div class="form-footer__cta pure-u-10-24" >
+                      <button {{action "addAnother"}} class="{{addToggle}} button">Add</button>
+                        <button {{action "update" plaintiffInfo.plaintiffIndex}} class="{{saveToggle}}
+                        button">Save</button>
+                        <button {{action "cancel"}} class="{{saveToggle}} button">Cancel</button>
+                    </div>
+                </div>
+              <div class="pure-u-1-1">
+                  <table class="pure-table pure-table-striped">
+                      <thead>
+                      <tr>
+                          <th>Plaintiff Name</th>
+                          <th>Plaintiff Address</th>
+                          <!--<th>Phone Number 1</th>-->
+                          <!--<th>Phone Number 2</th>-->
+                          <th></th>
+                      </tr>
+                      </thead>
+
+                      <tbody>
+                      {{#each plaintiffArray}}
+                          <tr>
+                              <td>{{this.fullname}}</td>
+                              <td>{{this.address}}</td>
+                              <!--<td>{{!this.phone}}</td>-->
+                              <!--<td>{{!this.phone1}}</td>-->
+                              <td>
+                                  <!--<i {{!action "editOne" this.index }}class="fa fa-pencil-square-o"></i>-->
+                                  <i {{action "removeOne" this.index }}class="fa fa-times-circle"></i>
+
+                              </td>
+                          </tr>
+                      {{/each}}
+
+                      </tbody>
+                  </table>
+              </div>
+
+
+
+            </form></section>
+    </div>
+
+</div>
+
+<fieldset id="caseJudge" class="pure-u-sm-5-5 pure-u-lg-23-24 pure-u-md-23-24">
+    <legend>Judge</legend>
+    <div class="pure-u-1-1">
+        <table class="">
+            <thead>
+            <tr>
+                <th>Judge Name</th>
+                <th>Phone</th>
+                <th>Court</th>
+                <th>Court No.</th>
+
+                <th></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {{#each judgesArray}}
+                <tr>
+                    <td>{{this.fullname}}</td>
+                    <td>+233 {{this.phone}}</td>
+                    <td>{{this.court}}</td>
+                    <td>{{this.courtnumber}}</td>
+                    <td><i {{action "removeOneJudge" this.index }}class="fa fa-times-circle"></i></td>
+                </tr>
+            {{/each}}
+
+            </tbody>
+        </table>
+    </div>
+    <div class="form-footer__cta">
+        <button {{action "showAddJudge"}} class="{{judgeState.addnew}} button">Add
+            New</button>
+    </div>
+    <form id="addJudge" class="{{judgeState.form}} pure-g">
+        <div class="form-group pure-u-sm-5-5 pure-u-lg-18-24 pure-u-md-18-24">
+
+        </div>
+
+        <div class="form-group form-group pure-u-sm-5-5 pure-u-lg-6-24 pure-u-md-10-24">
+
+            <div class="form-addon">
+                <div class="form-addon__addon">
+                    <b class="form-label--required"></b>
+                </div>
+              {{input required="true" type="text" disabled=disableAddJudge class="form-input" value=judgeInfo.judgeName
+              placeholder="Judge Name"}}
+            </div>
+        </div>
+        <div class="form-group pure-u-sm-5-5 pure-u-lg-6-24 pure-u-md-6-24">
+
+            <div class="form-addon">
+                <div class="form-addon__addon">
+                    <span class="form-label--required">+233</span>
+                </div>
+              {{input required="true" type="text" disabled=disableAddJudge data-parsley-type="digits" data-parsley-minlength="10" data-parsley-maxlength="10" class="form-input" value=judgeInfo.judgeContact1
+              placeholder="Judge Phone"}}
+            </div>
+        </div>
+        <div class="form-group form-group pure-u-sm-5-5 pure-u-lg-6-24 pure-u-md-6-24">
+            <div class="form-addon">
+                <div class="form-addon__addon">
+                    <b class="form-label--required"></b>
+                </div>
+              {{input required="true" type="email" disabled=disableAddJudge class="form-input" value=judgeInfo.judgeEmail placeholder="Email"}}
+            </div>
+        </div>
+        <div class="form-group pure-u-sm-5-5 pure-u-lg-6-24 pure-u-md-6-24">
+            <div class="form-addon" >
+                <div class="form-addon__addon">
+                    <span class="form-label--required">Court</span>
+                </div>
+              {{view  "select" content=courts optionValuePath="content.id"
+              optionLabelPath="content.txt" required="true" value=judgeInfo.court}}
+
+            </div>
+        </div>
+        <div class="form-group pure-u-sm-5-5 pure-u-lg-6-24 pure-u-md-6-24">
+            <div class="form-addon" >
+                <div class="form-addon__addon">
+                    <span class="form-label--required">Court Number</span>
+                </div>
+              {{view  "select" content=courtnumber optionValuePath="content.id"
+              optionLabelPath="content.txt" required="true" value=judgeInfo.courtNumber}}
+
+            </div>
+        </div>
+
+        <div class="form-footer__cta" style="margin-bottom: 10px">
+            <button {{action "addJudge"}} class="button">Add </button>
+            <button {{action "cancelAddJudge"}} class="button">Cancel </button>
+        </div>
+
+    </form>
+</fieldset>
+
+

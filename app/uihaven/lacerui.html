@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<style>
+  body{
+    overflow: hidden;
+  }
+  #wrapper{
+    width: 100%;
+    height: 800px;
+    background-image: url("bg.png");
+    overflow: hidden;
+  }
+  #lacer-head{
+    width: 100%;
+    height: 50px;
+    padding-top: 10px;
+    background: #ffffff;
+    box-shadow: 0 2px 2px #cccccc;
+    /*//border-bottom: #b94a48 solid 2px;*/
+  }
+  #lacer-head .title{
+    font-size: 22px;
+    color: #333333;
+  }
+  #lacer-content{
+    width: 100%;
+    height: 600px;
+    text-align: center;
+
+  }
+  #lacer-login{
+    width: 400px;
+    height: auto;
+    padding-bottom: 10px;
+    background-color: #f5f5f5;
+   margin: 100px auto;
+    -webkit-box-shadow: 1px 1px 9px 2px rgba(204,204,204,1);
+    -moz-box-shadow: 1px 1px 9px 2px rgba(204,204,204,1);
+    box-shadow: 1px 1px 9px 2px rgba(204,204,204,1);
+  }
+  #lacer-login .head{
+    padding-top: 9px;;
+    padding-bottom: 7px;
+    font-size: 24px;
+    color: #862165;
+    font-family: "OpenSansBold","Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  #lacer-login .sub-head{
+    padding-bottom: 7px;
+    font-size: 18.2px;
+    color: #666;
+  }
+  #lacer-login > form {
+    width: 100%;
+    height: auo;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  #lacer-login > form > input {
+    display: inline-block;
+    width: 260px;
+    height: 50px;
+    margin: 5px auto;
+    padding: 10px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 0.8em;
+    border: 1.5px solid #cccccc;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+  }
+
+  #lacer-login > form > input:focus {
+    border: thin solid #015b7e;
+    outline: none;
+  }
+  #login-submit{
+    width: 130px;
+    height: 50px;
+    background: #015b7e;
+    border: none;
+    outline: none;
+    margin: 0 auto;
+    display: block;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.7em;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+  }
+  #login-submit:hover {
+    background: #014965;
+  }
+  #lacer-login .line{
+    width: 70%;;
+    height: 2px;
+    background-color: #cccccc;
+    margin: 0 auto;
+
+  }
+  #lacer-login a{
+    font-size: 14px;
+    color: #862165;
+    margin-left: 10px;
+    margin-right: 10px;
+
+  }
+</style>
+<div class="" id="wrapper">
+  <div class="" id="lacer-head">
+    <img class="logo"><span class="title">Laywers Access To Court Electronic Documents</span>
+  </div>
+  <div class="" id="lacer-content">
+    <div id="lacer-login" class="">
+      <h3 class="head">Welcome to LACER</h3>
+      <div class="sub-head">Login Now</div>
+      <form>
+        <input type="text" id="username" name="username" placeholder="USERNAME" /><br>
+        <br>
+        <input type="password" id="password" name="password" placeholder="PASSWORD" />
+      </form>
+      <input id="login-submit" type="submit" value="Login"/>
+      <div class="line"></div>
+     <a> Help </a> | <a> Forgot your password </a>
+  </div>
+  </div>
+</div>
+
+
+</body>
+</html>

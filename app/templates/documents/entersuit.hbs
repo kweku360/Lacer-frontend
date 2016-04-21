@@ -1,0 +1,22 @@
+<div class="current-view">
+    ADD DOCUMENT
+</div>
+<div class="head">
+
+    <span class="tase"></span>
+    <span class="tasemini">please enter suit number </span>
+
+</div>
+<form class="pure-form pure-form-aligned">
+    <fieldset class="form-fieldset">
+        <div class="pure-control-group">
+            <label for="suitno">Suit Number</label>
+            <input id="suitno" type="text" placeholder="">
+        </div>
+        <div class="pure-controls control-btns">
+         {{#link-to  'documents.detail' classNames='pure-button pure-button-primary'}}
+             Proceed
+          {{/link-to}}
+        </div>
+    </fieldset>
+</form>

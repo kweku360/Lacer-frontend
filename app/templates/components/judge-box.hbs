@@ -1,0 +1,103 @@
+<div class="{{isOverlay}} lacer-overlay">
+    <section class="mod model-4">
+        <div class="spinner"></div>
+        <span>{{overlayMsg}}</span>
+    </section>
+</div>
+<div class="pure-u-1-1">
+        <table class="">
+            <thead>
+            <tr>
+                <th>Judge Name</th>
+                <th>Phone</th>
+                <th>Court</th>
+                <th>Court No.</th>
+
+                <th></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {{#each judgesArray}}
+                <tr>
+                    <td>{{this.fullname}}</td>
+                    <td>+233 {{this.phone}}</td>
+                    <td>{{this.court}}</td>
+                    <td>{{this.courtnumber}}</td>
+                    <td>
+                        <i {{action "editOneJudge" this.lawyerContact1 }}class="fa fa-pencil-square-o"></i>
+                        <i {{action "removeOneJudge" this.phone }}class="fa fa-times-circle"></i>
+                    </td>
+                </tr>
+            {{/each}}
+
+            </tbody>
+        </table>
+    </div>
+    <div class="form-footer__cta">
+        <button {{action "showAddJudge"}} class="{{judgeState.addnew}} button">Add
+            New</button>
+    </div>
+    <form id="addJudge" class="{{judgeState.form}} pure-g">
+        <div class="form-group pure-u-sm-5-5 pure-u-lg-18-24 pure-u-md-18-24">
+
+        </div>
+
+        <div class="form-group form-group pure-u-sm-5-5 pure-u-lg-6-24 pure-u-md-10-24">
+
+            <div class="form-addon">
+                <div class="form-addon__addon">
+                    <b class="form-label--required"></b>
+                </div>
+              {{input required="true" type="text" disabled=disableAddJudge class="form-input" value=judgeInfo.judgeName
+              placeholder="Judge Name"}}
+            </div>
+        </div>
+        <div class="form-group pure-u-sm-5-5 pure-u-lg-6-24 pure-u-md-6-24">
+
+            <div class="form-addon">
+              {{phone-box value=judgeInfo.judgeContact1 required=truthy requiredClass=phoneRequired
+              placeholder="Judge Phone"}}
+              {{!input required="true" type="text" disabled=disableAddJudge data-parsley-type="digits" data-parsley-minlength="10" data-parsley-maxlength="10" class="form-input" value=judgeInfo.judgeContact1
+              placeholder="Judge Phone"}}
+            </div>
+        </div>
+        <div class="form-group form-group pure-u-sm-5-5 pure-u-lg-6-24 pure-u-md-6-24">
+            <div class="form-addon">
+                <div class="form-addon__addon">
+                    <b class="form-label--required"></b>
+                </div>
+              {{input required="true" type="email" disabled=disableAddJudge class="form-input" value=judgeInfo.judgeEmail placeholder="Email"}}
+            </div>
+        </div>
+        <div class="form-group pure-u-sm-5-5 pure-u-lg-6-24 pure-u-md-6-24">
+            <div class="form-addon" >
+                <div class="form-addon__addon">
+                    <span class="form-label--required">Court</span>
+                </div>
+              {{view  "select" content=courts optionValuePath="content.id"
+              optionLabelPath="content.txt" required="true" value=judgeInfo.court}}
+
+            </div>
+        </div>
+        <div class="form-group pure-u-sm-5-5 pure-u-lg-6-24 pure-u-md-6-24">
+            <div class="form-addon" >
+                <div class="form-addon__addon">
+                    <span class="form-label--required">Court Number</span>
+                </div>
+              {{view  "select" content=courtnumber optionValuePath="content.id"
+              optionLabelPath="content.txt" required="true" value=judgeInfo.courtNumber}}
+
+            </div>
+        </div>
+
+        <div class="form-footer__cta">
+            <button {{action "addJudge"}} class="{{isEditFalse}} button">Add </button>
+            <button {{action "cancelAddJudge"}} class="{{isEditFalse}} button">Cancel </button>
+
+            <button {{action "Update"}} class="{{isEditTrue}} button">Save</button>
+            <button {{action "cancelUpdate"}} class="{{isEditTrue}} button">Cancel </button>
+        </div>
+
+    </form>
+

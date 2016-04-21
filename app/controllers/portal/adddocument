@@ -1,0 +1,223 @@
+import Ember from 'ember';
+
+function generateId(){
+  return Math.floor(100000 + Math.random() * 900000);
+};
+var myNewSuit = "";
+
+export default Ember.Controller.extend({
+  newSuitController: Ember.inject.controller('suits.new'),
+  newSuit: Ember.computed.reads('newSuitController.suitInfo'),
+  newSuitClear: Ember.computed.reads('newSuitController.clearForm'),
+
+  newPlaintiffController: Ember.inject.controller('suits.plaintiffs'),
+  newPlaintiffArray: Ember.computed.reads('newPlaintiffController.plaintiffArray'),
+
+  newDefendantController: Ember.inject.controller('suits.defendants'),
+  newDefendantArray: Ember.computed.reads('newDefendantController.defendantArray'),
+
+  newLawyerController: Ember.inject.controller('suits.addlawyer'),
+  newLawyerArray: Ember.computed.reads('newLawyerController.lawyersArray'),
+
+  documentInfo : {
+    documentId :generateId(),
+    documentName : "",
+    documentType : "",
+    documentDate : ""
+   },
+
+  documentType :["","Plaintiffs Claim"],
+  documentArray :Ember.A([]),
+
+
+  pushDocument : function(){
+    var documentInfo  = {
+      suitnumber :this.get("newSuit.suitNumber"),
+      code :this.get("documentInfo.documentId"),
+      name :this.get("documentInfo.documentName"),
+      type :this.get("documentInfo.documentType"),
+      datefiled : this.get("documentInfo.documentDate")
+
+    }
+
+    this.get("documentArray").pushObject(documentInfo);
+  },
+  clearForm: function(){
+    this.set("documentInfo.documentId",""),
+      this.set("documentInfo.documentName",""),
+      this.set("documentInfo.documentType",""),
+      this.set("documentInfo.documentAddress",""),
+      this.set("documentInfo.documentContact1",""),
+      this.set("documentInfo.documentContact2","")
+  },
+
+  removeOne : function(a){
+    this.get("documentArray").removeAt(a)
+    this.notify.info("value removed")
+  },
+
+  uploadDocument : function(){
+    var self = this;
+    var formdata = $("#uploadform")[0]
+    formdata.name = "uploadedfile"
+    $.ajax({
+      //url: "http://localhost:8888/lacerapi/index.php/users/token",
+      url: "http://localhost:8888/lacerapi/upload.php",
+      type: 'POST',
+      data : formdata,
+      enctype: 'multipart/form-data',
+      //Options to tell jQuery not to process data or worry about content-type.
+      cache: false,
+      contentType: false,
+      processData: false,
+      success: function(response) {
+        var obj = JSON.parse(response)
+        console.log(obj);
+        console.log(response);
+
+        //lets clear form
+        self.clearForm()
+      },
+      error: function (model, response) {
+        self.notify.error("")
+      }
+    });
+  },
+
+
+
+ actions : {
+    proceed : function(){
+      var validate = $("#addLawyer").parsley();
+      if(validate.validate() == true){
+        this.pushLawyer();
+        this.transitionTo("suits.defendants")
+      }else{
+        this.notify.error("Please Fix Errors")
+      }
+    },
+   goBack : function(){
+     this.transitionTo("suits.defendants")
+   },
+   upload : function(){
+
+     var validate = $("#addDocument").parsley();
+     if(validate.validate() == true){
+      //this.uploadDocument()
+       this.pushDocument();
+       console.log(this.get("documentArray"));
+       //then we clear form
+       this.clearForm();
+     }else{
+       this.notify.error("Please Fix Errors")
+     }
+   },
+   saveInfo : function(){
+     var suit = {
+       suitnumber : this.get("newSuit.suitNumber"),
+       type : "Writ of Summons",
+       datefiled : this.get("newSuit.suitDate"),
+       title : this.get("newSuit.suitTitle"),
+       suitstatus : this.get("newSuit.suitStatus"),
+       suitaccess : this.get("newSuit.suitAccess"),
+       dateofadjournment : 0
+     }
+     var self =this;
+     $.ajax({
+       //url: "http://localhost:8888/lacerapi/index.php/users/token",
+       url: "http://localhost:8888/lacerapi/index.php/suits",
+       data:suit,
+       type: 'POST',
+       success: function(response) {
+         var obj = JSON.parse(response)
+         console.log(obj);
+         if(obj.meta.code == "422"){
+           self.notify.error("Suit Number Already Exists")
+         }else{
+           self.notify.success("Suit added successfully")
+           self.newSuitClear;
+         }
+       },
+       error: function (model, response) {
+         self.notify.error("Unable to add suit - try again")
+       }
+     });
+     //
+     //loop through plaintiff array
+     var arrayLength = this.get("newPlaintiffArray").length;
+     for (var i = 0; i < arrayLength; i++) {
+       $.ajax({
+         //url: "http://localhost:8888/lacerapi/index.php/users/token",
+         url: "http://localhost:8888/lacerapi/index.php/plaintiffs",
+         data:this.get("newPlaintiffArray")[i],
+         type: 'POST',
+         success: function(response) {
+           var obj = JSON.parse(response)
+           console.log(obj);
+         //  self.notify.success("plaintiff added successfully")
+
+         },
+         error: function (model, response) {
+           self.notify.error("Unable to add plaintiffs - try again")
+         }
+       });
+     }
+
+     var arrayLength = this.get("newDefendantArray").length;
+     for (var i = 0; i < arrayLength; i++) {
+       $.ajax({
+         //url: "http://localhost:8888/lacerapi/index.php/users/token",
+         url: "http://localhost:8888/lacerapi/index.php/defendants",
+         data:this.get("newDefendantArray")[i],
+         type: 'POST',
+         success: function(response) {
+           var obj = JSON.parse(response)
+           console.log(obj);
+          // self.notify.success("Defendant added successfully")
+
+         },
+         error: function (model, response) {
+           self.notify.error("Unable to add Defendant - try again")
+         }
+       });
+     }
+     ////loop through Lawyer array
+     var arrayLength = this.get("newLawyerArray").length;
+     for (var i = 0; i < arrayLength; i++) {
+       $.ajax({
+         //url: "http://localhost:8888/lacerapi/index.php/users/token",
+         url: "http://localhost:8888/lacerapi/index.php/lawyers",
+         data:this.get("newLawyerArray")[i],
+         type: 'POST',
+         success: function(response) {
+           var obj = JSON.parse(response)
+           console.log(obj);
+          // self.notify.success("Lawyer added successfully")
+         },
+         error: function (model, response) {
+           self.notify.error("Unable to add Lawyer")
+         }
+       });
+     }
+     //Finally loop through document array
+     var arrayLength = this.get("documentArray").length;
+     for (var i = 0; i < arrayLength; i++) {
+       $.ajax({
+         //url: "http://localhost:8888/lacerapi/index.php/users/token",
+         url: "http://localhost:8888/lacerapi/index.php/documents",
+         data:this.get("documentArray")[i],
+         type: 'POST',
+         success: function(response) {
+           var obj = JSON.parse(response)
+           console.log(obj);
+         //  self.notify.success("document added successfully")
+         },
+         error: function (model, response) {
+           self.notify.error("Unable to add documentArray")
+         }
+       });
+     }
+   }
+
+ }
+});

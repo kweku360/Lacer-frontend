@@ -1,0 +1,40 @@
+<!--the wrapper-->
+<div id="wrapper" class="pure-g">
+    <!--the sidebox-->
+    <div id="sideBox" class="pure-u-sm-1-1 pure-u-lg-1-5 pure-u-md-1-5">
+      {{side-bar
+      showSuitIndex="showSuitIndex"
+      showLawyerIndex="showLawyerIndex"
+      showJudgeIndex="showJudgeIndex"
+      showCourtIndex="showCourtIndex"
+      showAdminIndex="showAdminIndex"}}
+    </div>
+    <!--end the sidebox-->
+    <!--start content box-->
+    <div id="contentBox" class="pure-u-sm-1-1 pure-u-lg-4-5 pure-u-md-4-5">
+        <div class="top-box">
+            <div class="user-options">
+                <div><i class="fa fa-cog fa-2x"></i><br>
+                    <span class="bolt-light">My Account</span>
+                </div>
+                <div {{action "signOut"}}><i class="fa fa-sign-out fa-2x"></i><br>
+                    <span class="bolt-light">Sign Out</span>
+                </div>
+            </div>
+            <div class="user-box" id="user-box">
+                <div class="user-img" id="user-img">
+                    <img src="/assets/images/user.png" class="pure-img" width="50" height="50"/>
+                    <div class="user-name bolt"> {{username}}</div>
+                    <div class="user-position bolt-light">{{position}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="main-box pure-g">
+            {{outlet}}
+
+        </div>
+
+    </div>
+    <!--end content box-->
+</div>
+<!--end the wrapper-->

@@ -1,0 +1,80 @@
+<div class="view-heading pure-u-1-1">
+    <div class="text bolt-light">Create User</div>
+    <div class="breadcrumb flat bolt-light">
+      {{#link-to  'admin' }}
+          Home
+      {{/link-to}}
+      {{#link-to  'admin.createuser'}}
+          Create User
+      {{/link-to}}
+    </div>
+</div>
+
+<div class="middle-box pure-u-23-24">
+    <div class="wraps">
+        <section class="section-form">
+            <div class="coa"> <img src="/assets/images/coasmall.jpg"></div>
+            <form name="signup" class="form" id="addLawyer" novalidate>
+                <div class="pure-g">
+                    <div class="form-group pure-u-6-24">
+                        <label for="name" class="form-label form-label--required">
+                            Full Name:
+                        </label>
+                        <div class="form-addon">
+                            <div class="form-addon__addon">
+                                <i class="fa fa-clone"></i>
+                            </div>
+                          {{input type="text" required="true" class="form-input" value=lawyerInfo.lawyerName
+                          placeholder="Name"}}
+                        </div>
+                    </div>
+                    <div class="form-group pure-u-6-24">
+                        <label for="name" class="form-label form-label--required">
+                             Email:
+                        </label>
+                        <div class="form-addon">
+                            <div class="form-addon__addon">
+                                <i class="fa fa-clone"></i>
+                            </div>
+                          {{input type="text" required="true" class="form-input" value=lawyerInfo.lawyerName
+                          placeholder="Name"}}
+                        </div>
+                    </div>
+                    <div class="form-group pure-u-6-24">
+                        <label for="name" class="form-label form-label--required">
+                             Password:
+                        </label>
+                        <div class="form-addon">
+                            <div class="form-addon__addon">
+                                <i class="fa fa-clone"></i>
+                            </div>
+                          {{input type="text" required="true" class="form-input" value=lawyerInfo.lawyerName
+                          placeholder="Name"}}
+                        </div>
+                    </div>
+                    <div class="form-group pure-u-6-24">
+                        <label for="name" class="form-label form-label--required">
+                             Confirm Password:
+                        </label>
+                        <div class="form-addon">
+                            <div class="form-addon__addon">
+                                <i class="fa fa-clone"></i>
+                            </div>
+                          {{input type="text" required="true" class="form-input" value=lawyerInfo.lawyerName
+                          placeholder="Name"}}
+                        </div>
+                    </div>
+
+                    <div class="form-group pure-u-6-24 form-footer__cta" style="margin-bottom: 10px">
+
+                        <button {{action "addAnother"}} class="button">Add User </button>
+
+                    </div>
+
+                </div>
+            </form></section>
+    </div>
+
+</div>
+
+

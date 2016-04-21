@@ -1,0 +1,99 @@
+<div id="login-wrapper" class="">
+
+    <div id="login" class="pure-u-sm-1-1 pure-u-md-10-24 pure-u-lg-10-24">
+
+        <div class="logo-img pure-u-sm-1-1"><img src="/assets/images/logoe.png"></div>
+        <h3 class="pure-u-1-1">Register</h3>
+      <!--step one-->
+        <form id="userPhone" class="{{enterPhoneView}} pure-g">
+        <h3 class="pure-u-1-1">Step 1 / 3</h3>
+        <a class="pure-u-sm-1-1 pure-u-lg-3-5">Please Enter Phone Number</a>
+            <!--<span class="mute">must be a valid phone number</span>-->
+          {{phone-box required=truthy requiredClass=phoneRequired value=phoneInfo.phone placeholder="546656745"}}
+          {{!input class="pure-u-sm-2-5 pure-u-lg-1-5"  data-parsley-type="digits" data-parsley-minlength="10" data-parsley-maxlength="10" required="true" value=phoneInfo.phone placeholder="phone eg. 0546656745"}}
+
+            <input {{action "enterPhoneProceed"}} class="pure-u-sm-2-5 pure-u-lg-1-5" class="reginput" type="submit" value="proceed" /><br><br>
+
+            <span class="bolt-light lightgrey">We will send you a registration code via SMS</span><br>
+            <span class="bolt-light lightgrey">i have already received sms code <a {{action
+            "codeProceed"}}>proceed</a></span><br>
+
+         </form>
+        <!--end step one-->
+
+        <!--step two-->
+        <form id="verifyCode" class="{{verifyCodeView}} pure-g">
+        <h3 class="pure-u-1-1">Step 2 / 3</h3>
+        <a class="pure-u-sm-1-1 pure-u-lg-3-5">Please Enter 6 digit verification</a>
+            <!--<span class="mute">must be a valid phone number</span>-->
+          {{input class="pure-u-sm-2-5 pure-u-lg-1-5"  data-parsley-type="digits" data-parsley-minlength="6" data-parsley-maxlength="6" required="true" value=phoneInfo.code placeholder="code"}}
+            <input {{action "goBack"}} class="pure-u-sm-2-5 pure-u-lg-1-5" class="reginput" type="submit" value="Back"/>
+          <input {{action "verifyCodeProceed"}} class="pure-u-sm-2-5 pure-u-lg-1-5" class="reginput" type="submit" value="proceed" />
+          <br><br>
+ <span class="bolt-light lightgrey">if you do not receive code please go back and review phone
+                number</span><br>
+         </form>
+        <!--end step two-->
+
+        <!--step three-->
+        <form id="userRegister" class="{{activeCodeView}} pure-g">
+        <h3 class="pure-u-1-1">Step 3 / 3</h3>
+        <h3 class="pure-u-1-1">Please Enter Details Accurately</h3>
+        <a class="pure-u-sm-1-1 pure-u-lg-3-5">Phone Number : +233 {{registerDetails.phone}}</a><br><br>
+         <div class="form-group pure-u-18-24">
+                <div class="form-addon">
+                    <div class="form-addon__addon">
+
+                    </div>
+                  {{view  "select" content=userPosition class="form-input" value=registerDetails.position}}
+
+                </div>
+            </div>
+            <div class="form-group pure-u-18-24">
+                <div class="form-addon">
+                    <div class="form-addon__addon">
+
+                    </div>
+                  {{input type="email" class="form-input" required="true" value=registerDetails.email placeholder="Email"}}
+
+                </div>
+            </div>
+            <div class="form-group pure-u-18-24">
+                <div class="form-addon">
+                    <div class="form-addon__addon">
+
+                    </div>
+                  {{input type="text" class="form-input" value=registerDetails.fullname placeholder="Full Name"}}
+
+                </div>
+            </div>
+            <div class="form-group pure-u-18-24">
+                <div class="form-addon">
+                    <div class="form-addon__addon">
+
+                    </div>
+                  {{input type="password" class="form-input" value=registerDetails.password placeholder="Password"}}
+                </div>
+            </div>
+            <div class="form-group pure-u-18-24">
+                <div class="form-addon">
+                    <div class="form-addon__addon">
+
+                    </div>
+                    <input class="form-input" {{focus-out "check Password"}} type="password" placeholder="Confirm Password" />
+                </div>
+            </div>
+            <div class="form-footer__cta form-group pure-u-18-24">
+                <button {{action "registerMember"}} class=" button">create account </button>
+                <button {{action "cancel"}} class="{{isEditFalse}} button">Cancel </button>
+            </div>
+
+         </form>
+        <!--end step three-->
+        <div class="msg">
+            Already Registered ? {{#link-to  'logins'}}
+           LOG IN
+           {{/link-to}}
+        </div>
+    </div>
+</div>

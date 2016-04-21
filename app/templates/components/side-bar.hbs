@@ -1,0 +1,32 @@
+<div class="brand-logo bolt" id="brand-logo">
+    <img src="/assets/images/logo.png" class="pure-img"/>
+</div>
+
+<!--todo convert to component-->
+<div  id="menu-box" class="menu-box">
+    <div {{action "showSuitIndex"}} class="item">
+        <i class="fa fa-briefcase fa-2x"></i>
+        <b class="bolt-light">Cases</b>
+
+    </div>
+    <div {{action "showLawyerIndex"}} class="item">
+        <i class="fa fa-black-tie fa-2x"></i>
+        <b class="bolt-light">Lawyers</b>
+
+    </div>
+    <div {{action "showJudgeIndex"}} class="item">
+        <i class="fa fa-balance-scale fa-2x"></i>
+        <b class="bolt-light">Judges</b>
+
+    </div>
+    <!--<div {{!action "showCourtIndex"}} class="item">-->
+        <!--<i class="fa fa-building-o fa-2x"></i>-->
+        <!--<b class="bolt-light">Courts</b>-->
+
+    <!--</div>-->
+    <div {{action "showAdminIndex"}} class="item">
+        <i class="fa fa-user-plus fa-2x"></i>
+        <b class="bolt-light">Admin</b>
+
+    </div>
+</div>

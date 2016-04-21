@@ -1,0 +1,125 @@
+<div class="view-heading pure-u-1-1">
+    <div class="text bolt-light">Add Document</div>
+    <div class="breadcrumb flat bolt-light">
+      {{#link-to  'suits' activeClass=""}}
+          Home
+      {{/link-to}}
+      {{#link-to  'manage' activeClass=""}}
+          Manage Cases
+      {{/link-to}}
+      {{#link-to  'manage.documents' }}
+          documents
+      {{/link-to}}
+    </div>
+</div>
+<div class="submenu-box pure-u-4-24">
+  {{manage-detail action=""}}
+</div>
+<div class="middle-box pure-u-19-24">
+    <div class="wraps">
+        <section class="section-form">
+            <!--<p>-->
+            <!--Please Enter Information Accurately-->
+            <!--</p>-->
+            <div class="coa"> <img src="/assets/images/coasmall.jpg"></div>
+            <fieldset id="caseDocuments" class="pure-u-sm-5-5 pure-u-lg-24-24 pure-u-24-24-24">
+                <legend>Documents / Processes</legend>
+                <form id="addDocument" class="pure-g">
+                    <div class="form-group pure-u-sm-5-5 pure-u-lg-8-24 pure-u-md-8-24">
+                        <div class="form-addon" >
+                            <div class="form-addon__addon">
+                                <b class="form-label--required">Process </b>
+                            </div>
+                          {{view  "select" content=documentType optionValuePath="content.id"
+                          optionLabelPath="content.txt"
+                          required="true" value=documentInfo.documentType}}
+
+                        </div>
+                    </div>
+                    <div class="form-group pure-u-sm-5-5 pure-u-lg-6-24 pure-u-md-6-24">
+                        <div class="form-addon" >
+                            <div class="form-addon__addon">
+                                <b class="form-label--required">Date </b>
+                            </div>
+                          {{date-picker  required="true" class="form-input" date=documentInfo.documentDate format='DD-MM-YYYY'}}
+                        </div>
+                    </div>
+                    <div class="form-group pure-u-sm-5-5 pure-u-lg-8-24 pure-u-md-8-24">
+                        <div class="form-addon" >
+                            <div class="form-addon__addon">
+                                <b class="form-label--required">Filed By </b>
+                            </div>
+                          {{view  "select" content=documentFiler optionValuePath="content.id"
+                          optionLabelPath="content.txt"
+                          required="true" value=documentInfo.documentFiler}}
+                        </div>
+                    </div>
+                </form>
+                <div class="pure-g">
+                    <div class="form-group pure-u-sm-5-5 pure-u-lg-13-24 pure-u-md-13-24">
+                        <div class="form-addon" >
+                            <div class="form-addon__addon">
+                                <b class="form-label--required">Choose Document </b>
+                            </div>
+                            <form id="uploaderForm" enctype="multipart/form-data">
+                                <input name="uploadedfile"  id="uploadedfile" class="form-input" required="true" type="file" name="file" placeholder=""></form>
+
+                        </div>
+                    </div>
+                    <div class="btnupload pure-u-sm-5-5 pure-u-lg-3-24 pure-u-md-3-24">
+                        <section class="{{viewSwitch.loadingImg}} mod model-4">
+                            <div class="spinner"></div></section>
+                        <button {{action "upload"}} class="{{viewSwitch.uploadBtn}} button">Upload</button>
+
+                    </div>
+                    <div class="{{viewSwitch.loadingImg}} pure-u-sm-5-5 pure-u-lg-13-24 pure-u-md-13-24">
+                        <div class="pbar">
+                            <div class="downloader">
+                                <div class="downloading-progress">
+                                    <div class="downloading-progress-bar" data-value="0" data-max="100"></div>
+                                </div>
+                                <div class="percentage"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div><br><br>
+
+                <div class="pure-u-1-1">
+                    <b for="name" class="form-label form-label">
+                        Documents
+                    </b>
+                    <table class="pure-table pure-table-striped">
+                        <thead>
+                        <tr>
+
+                            <th>Document / Process Type</th>
+
+                            <th>Date Filed</th>
+                            <th>Filed By</th>
+
+                            <th></th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {{#each documentArray}}
+                            <tr>
+                                <td>{{this.type}}</td>
+                                <td>{{this.rawdatefiled}}</td>
+                                <td>{{this.filer}}</td>
+
+                                <td>
+                                    <!--lets build a preview url-->
+                                    <a target="_blank" href="{{pdfViewLocation}}?file={{documentLocation}}/{{code}}">View
+                                        document</a>
+                                </td>
+                            </tr>
+                        {{/each}}
+
+                        </tbody>
+                    </table>
+                </div>
+            </fieldset></section>
+    </div>
+
+</div>

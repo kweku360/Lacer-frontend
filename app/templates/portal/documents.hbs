@@ -1,0 +1,41 @@
+<div class="view-heading pure-u-1-1">
+    <div class="text bolt-light">Case Document</div>
+    <div class="breadcrumb flat bolt-light">
+      {{#link-to  'portal' activeClass=""}}
+          Case List
+      {{/link-to}}
+      {{#link-to  'portal.documents'}}
+          Case Document
+      {{/link-to}}
+    </div>
+</div>
+<div class=" pure-u-2-24" style="border: 0px solid red">
+
+</div>
+<div class="middle-box pure-u-20-24">
+
+    <table>
+        <thead>
+        <tr>
+            <th>Format</th>
+            <th>Process Name</th>
+            <th>Date Filed</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each documentArray}}
+
+            <tr>
+                <td><i class="fa fa-file-pdf-o red fa-2x"></i></td>
+                <td>{{this.type}}</td>
+                <td>{{this.datefiled}}</td>
+                <td><a target="_blank" href="{{pdfViewLocation}}?file={{documentLocation}}/{{this.code}}">View</a> </td>
+                <td><a target="_blank"  href="{{this.location}}{{this.code}}">Download</a></td>
+            </tr>
+        {{/each}}
+
+        </tbody>
+    </table>
+</div>

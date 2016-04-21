@@ -1,0 +1,204 @@
+<div class="view-heading pure-u-1-1">
+    <div class="text bolt-light">Review Case {{suitid}}</div>
+    <div class="breadcrumb flat bolt-light">
+      {{#link-to  'suits' activeClass=""}}
+          Cases
+      {{/link-to}}
+      {{#link-to  'suits.review'}}
+         Review
+      {{/link-to}}
+      {{#link-to  'suits.reviewdetail'}}
+          Case Number
+      {{/link-to}}
+    </div>
+</div>
+<div class="pure-u-1-24">
+
+</div>
+<div class="middle-box pure-u-sm-5-5 pure-u-lg-20-24 pure-u-20-24">
+    <div class="wraps">
+        <section class="section-form">
+            <!--<p>-->
+            <!--Please Enter Information Accurately-->
+            <!--</p>-->
+            <div class="coa"> <img src="/assets/images/coasmall.jpg"></div>
+            <div class="pure-g">
+
+                <fieldset id="caseInfo" class="pure-u-sm-5-5 pure-u-lg-24-24 pure-u-24-24-24">
+                    <div class="form-group pure-u-6-24">
+                        <b for="name" class="form-label form-label">
+                            Case Number:
+                        </b>
+                        <div class="">
+                          {{suitInfo.suitNumber}}
+                        </div>
+                    </div>
+                    <div class="form-group pure-u-6-24">
+                        <b for="name" class="form-label form-label">
+                            Case Title:
+                        </b>
+                        <div class="">
+                          {{suitInfo.suitTitle}}
+                        </div>
+                    </div>
+                    <div class="form-group pure-u-6-24">
+                        <b for="name" class="form-label form-label">
+                            Date Filed
+                        </b>
+                        <div class="">
+                          {{suitInfo.suitDate}}
+                        </div>
+                    </div>
+                    <div class="form-group pure-u-6-24">
+                        <b for="name" class="form-label form-label">
+                            Case Type
+                        </b>
+                        <div class="">
+                          {{suitInfo.suitType}}
+                        </div>
+                    </div>
+                    <div class="form-group pure-u-6-24">
+                        <b for="name" class="form-label form-label">
+                            Court
+                        </b>
+                        <div class="">
+                          {{suitInfo.suitCourt}}
+                        </div>
+                    </div>
+                    <div class="form-group pure-u-6-24">
+                        <b for="name" class="form-label form-label">
+                            Status
+                        </b>
+                        <div class="">
+                          {{suitInfo.suitStatus}}
+                        </div>
+                    </div>
+
+
+
+                </fieldset>
+
+                <!--tables now-->
+                <div class="pure-u-1-1">
+                    <b for="name" class="form-label form-label">
+                        Plaintiffs
+                    </b>
+                    <table class="">
+                        <thead>
+                        <tr>
+                            <th>Plaintiff Name</th>
+                            <th>Plaintiff Address</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {{#each plaintiffArray}}
+                            <tr>
+                                <td>{{this.fullname}}</td>
+                                <td>{{this.address}}</td>
+                            </tr>
+                        {{/each}}
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pure-u-1-1">
+                    <b for="name" class="form-label form-label">
+                        Defendants
+                    </b>
+                    <table class="">
+                        <thead>
+                        <tr>
+                            <th>Defendant Name</th>
+                            <th>Defendant Address</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {{#each defendantArray}}
+                            <tr>
+                                <td>{{this.fullname}}</td>
+                                <td>{{this.address}}</td>
+                            </tr>
+                        {{/each}}
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pure-u-1-1">
+                    <b for="name" class="form-label form-label">
+                        Lawyers
+                    </b>
+                    <table class="">
+                        <thead>
+                        <tr>
+                            <th>Lawyer Name</th>
+                            <th>Lawyer Type</th>
+                            <th>Lawyer Email</th>
+                            <th>Lawyer Address</th>
+                            <th>Phone Number</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {{#each lawyersArray}}
+                            <tr>
+                                <td>{{this.lawyerName}}</td>
+                                <td>{{this.lawyertype}}</td>
+                                <td>{{this.lawyerEmail}}</td>
+                                <td>{{this.lawyerAddress}}</td>
+                                <td>{{this.lawyerContact1}}</td>
+                            </tr>
+                        {{/each}}
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pure-u-1-1">
+                    <b for="name" class="form-label form-label">
+                        Documents
+                    </b>
+                    <table class="pure-table pure-table-striped">
+                        <thead>
+                        <tr>
+
+                            <th>Document / Process Type</th>
+
+                            <th>Date Filed</th>
+
+                            <th></th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {{#each documentArray}}
+                            <tr>
+                                <td>{{this.type}}</td>
+                                <td>{{this.datefiled}}</td>
+
+                                <td>
+                                    <!--lets build a preview url-->
+                                    <a target="_blank" href="{{pdfViewLocation}}?file={{documentLocation}}/{{code}}">View
+                                        document</a>
+                                </td>
+                            </tr>
+                        {{/each}}
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pure-u-1-1">
+                    <div class="form-footer__cta pure-u-1-1" >
+                        <button {{action "cancel"}} class="button">Cancel</button>
+                        <!--<button {{!action "cancel"}} class="button">Manage</button>-->
+                        <button {{action "authorize"}} class="button">Authorize Case</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+    </div>
+
+</div>
+

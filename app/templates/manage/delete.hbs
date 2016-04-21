@@ -1,0 +1,62 @@
+<div class="view-heading pure-u-1-1">
+    <div class="text bolt-light">Delete Suit {{suitInfo.suitNumber}}</div>
+    <div class="breadcrumb flat flat bolt-light">
+      {{#link-to  'suits' activeClass=""}}
+          Home
+      {{/link-to}}
+      {{#link-to  'manage' activeClass=""}}
+        Manage Suits
+    {{/link-to}}
+      {{#link-to  'manage.delete'}}
+          Delete Suit
+    {{/link-to}}
+        </div>
+</div>
+<div class="submenu-box pure-u-4-24">
+{{manage-detail}}
+</div>
+<div class="middle-box pure-u-19-24">
+    <div class="wraps">
+        <section class="section-form">
+            <!--<p>-->
+                <!--Please Enter Information Accurately-->
+            <!--</p>-->
+          <div class="coa"> <img src="/assets/images/coasmall.jpg"></div>
+            <form name="signup" class=" form" id="newSuit" novalidate>
+                <div class="pure-g">
+                    <div class="form-group pure-u-5-5">
+                        <label for="name" class="form-label form-label--required">
+                            Delete Reason :
+                        </label><br>
+
+                        <div class="form-addon">
+                            <div class="form-addon__addon">
+                                <i class="fa fa-clone"></i>
+                            </div>
+                          {{input type="text" required="true" class="hideView form-input" value=suitInfo.suitNumber placeholder="Suit Number"}}
+                        </div>
+                    </div>
+                    <div class="form-group form-group pure-u-5-5">
+                        <label for="date" class="form-label form-label--required">
+                            Enter Delete Code:
+                        </label>
+                        <div class="form-addon">
+                            <div class="form-addon__addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                          {{input type="text" required="true" class="hideView form-input" value=suitInfo.suitNumber placeholder="Suit Number"}}  <!--<input value="" type="text" id="date" class="form-input" placeholder="choose Date">-->
+                        </div>
+                    </div>
+
+                </div>
+              <b>Please Note - All information Related to suit will be deleted</b><br>
+              <b>All Parties will be notified of suit deletion</b><br>
+
+                <div class="form-footer__cta">
+                    <button type="submit" {{action "next"}} class="button">Delete Suit</button>
+                </div>
+
+            </form></section>
+    </div>
+
+</div>

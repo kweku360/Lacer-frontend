@@ -1,0 +1,123 @@
+<div class="view-heading pure-u-1-1">
+    <div class="text bolt-light">Add Document</div>
+    <div class="breadcrumb flat bolt-light">
+      {{#link-to  'suits' activeClass=""}}
+          Cases
+      {{/link-to}}
+      {{#link-to  'suits.new'}}
+          New Case
+      {{/link-to}}
+      {{#link-to  'suits.plaintiffs'}}
+          Add plaintiff
+      {{/link-to}}
+      {{#link-to  'suits.addlawyer'}}
+          Add Lawyer
+      {{/link-to}}
+      {{#link-to  'suits.addlawyer'}}
+          Add Defendant
+      {{/link-to}}
+      {{#link-to  'suits.adddocument'}}
+          Add Document
+      {{/link-to}}
+
+    </div>
+</div>
+<div class="submenu-box pure-u-4-24">
+  {{suit-detail newSuit=newSuit plaintiffs=newPlaintiffArray documents=documentsArray defendants=newDefendantArray lawyers=newLawyerArray}}
+</div>
+<div class="middle-box pure-u-19-24">
+    <div class="wraps">
+        <section class="section-form">
+            <!--<p>-->
+            <!--Please Enter Information Accurately-->
+            <!--</p>-->
+            <div class="coa"> <img src="/assets/images/coasmall.jpg"></div>
+            <form name="signup" class="form" id="addDocument" novalidate>
+                <div style="border: 0px solid red" class="pure-g">
+                    <div class="form-group pure-u-10-24">
+                        <label for="name" class="form-label form-label--required">
+                            Court Process Type:
+                        </label>
+                        <div class="form-addon">
+                            <div class="form-addon__addon">
+                                <i class="fa fa-clone"></i>
+                            </div>
+
+                              {{view  "select" content=documentType pattern="/^((?!Select One).)*$/s"
+                              required="true" value=documentInfo.documentType}}
+
+                        </div>
+                    </div>
+                    <div class="form-group pure-u-10-24">
+                        <label for="name" class="form-label form-label--required">
+                            Date :
+                        </label>
+                        <div class="form-addon" data-states-for="name">
+                            <div class="form-addon__addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+
+                          {{date-picker  required="true" class="form-input" date=documentInfo
+                          .documentDate format='DD-MM-YYYY'}}
+                        </div>
+                    </div>
+                    <div class="form-group form-group pure-u-12-24">
+                        <label for="date" class="form-label form-label--required">
+                            Choose Document :
+                        </label>
+                        <div class="form-addon">
+                            <div class="form-addon__addon">
+                                <i class="fa fa-clone"></i>
+                            </div>
+                            <form enctype="multipart/form-data" id="uploadform">
+                            <input name="uploadedfile" accept="application/pdf" id="uploadedfile" class="form-input" required="true" type="file" name="file" placeholder=""></form>
+                    </div>
+                      </div>
+                  <div class="btnupload">
+                      <img class="{{toggleimg}}"  src="/assets/images/468.GIF"/>
+                      <button {{action "upload"}} class="button {{togglebtn}}">Upload</button>
+
+                  </div>
+
+                    <div class="form-footer__cta pure-u-1-1" >
+                           <button {{action "back"}} class="button">Back</button>
+                            <button {{action "goReview"}} class="button">Proceed</button>
+                     </div>
+                </div>
+
+                <div class="pure-u-1-1">
+                    <table class="pure-table pure-table-striped">
+                        <thead>
+                        <tr>
+
+                            <th>Document / Process Type</th>
+                            <!--<th>Document Date</th>-->
+
+                            <th>Upload Status</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {{#each documentArray}}
+                            <tr>
+
+                                <td>{{this.type}}</td>
+                                <!--<td>{{this.documentDate}}</td>-->
+                                <td>success</td>
+
+                                <td><i {{action "removeOne" this.index }}class="fa fa-times-circle"></i></td>
+                            </tr>
+                        {{/each}}
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+            </form></section>
+    </div>
+
+</div>
+

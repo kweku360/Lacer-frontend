@@ -1,0 +1,397 @@
+<div class="view-heading pure-u-1-1">
+    <div class="text bolt-light">New Case</div>
+    <div class="breadcrumb flat bolt-light">
+      {{#link-to  'suits' activeClass=""}}
+        Cases
+    {{/link-to}}
+      {{#link-to  'suits.new'}}
+          New Case
+    {{/link-to}}
+    </div>
+    <!--<div class="coa"> <img src="/assets/images/coasmall.jpg"></div>-->
+</div>
+<div class="middle-box pure-u-sm-5-5 pure-u-lg-24-24 pure-u-24-19-24">
+    <div class="wraps">
+        <section class="pure-g section-form">
+        <br>
+          <!--Start new ui - with case info-->
+          <fieldset id="caseOption" class="pure-u-sm-5-5 pure-u-lg-24-24 pure-u-24-24-24">
+              <label class="form-label--required">
+
+              </label>
+              <div class="pure-u-sm-5-5 pure-u-lg-2-5 pure-u-md-2-5"> {{input type="checkbox" checked=viewstate.selectedCriminal}}
+                  <b>Criminal Case</b>
+              </div>
+              <div class="pure-u-sm-5-5 pure-u-lg-2-5 pure-u-md-2-5"> {{input type="checkbox" checked=viewstate.selectedCivil}}
+                  <b>Civil Case</b>
+              </div>
+          </fieldset>
+          <fieldset id="caseInfo" class="pure-u-sm-5-5 pure-u-lg-24-24 pure-u-24-24-24">
+              <form id="caseDetail" class="pure-g">
+
+              <div class="form-group pure-u-sm-5-5 pure-u-lg-9-24 pure-u-md-9-24 ">
+                  <div class="form-addon">
+                      <div class="form-addon__addon">
+                          <b class="form-label--required">Case Number</b>
+                      </div>
+                    {{input type="text" required="true" class="form-input" value=caseInfo.caseNumber
+                    placeholder="case number"}}
+                  </div>
+
+              </div>
+              <div class="form-group form-group  pure-u-sm-5-5 pure-u-lg-6-24 pure-u-md-6-24 ">
+                  <div class="form-addon">
+                      <div class="form-addon__addon">
+                         <b class="form-label--required">Date </b>
+                      </div>
+                    {{date-picker  required="true" class="form-input" date=caseInfo.caseDate format='DD-MM-YYYY'}}
+                      <!--<input value="" type="text" id="date" class="form-input" placeholder="choose Date">-->
+                  </div>
+              </div>
+              <div class="form-group pure-u-sm-5-5 pure-u-lg-6-24 pure-u-md-6-24">
+                  <div class="form-addon" >
+                      <div class="form-addon__addon">
+                          <b class="">Court </b>
+                      </div>
+                    {{view  "select" content=courts optionValuePath="content.id"
+                    optionLabelPath="content.txt" required="true" value=caseInfo.caseCourt}}
+
+                  </div>
+              </div>
+
+              <div class="pure-g">
+                  <label for="name" class="form-label form-label--required">
+                      Case Title:
+                  </label>
+                  <div class=" form-group pure-u-sm-5-5 pure-u-lg-8-24 pure-u-md-8-24 ">
+                      <div class="form-addon">
+                          <div class="form-addon__addon">
+                              <b class="">Plaintiff </b>
+                          </div>
+                        {{input type="text" disabled=disabledVal required="true" class="form-input" value=caseInfo.caseTitlePlaintiff placeholder=""}}
+                      </div>
+                  </div>
+                  <div class="versusTxt pure-u-sm-5-5 pure-u-lg-1-24 pure-u-md-1-24 ">
+                      vs
+                  </div>
+                  <div class="form-group form-group  pure-u-sm-5-5 pure-u-lg-7-24 pure-u-md-7-24 ">
+                      <div class="form-addon">
+                          <div class="form-addon__addon">
+                              <b class="">Defendant </b>
+                          </div>
+                        {{input type="text" required="true" class="form-input" value=caseInfo.caseTitleDefendant placeholder=""}}
+                      </div>
+                  </div>
+                  <div class="form-group pure-u-sm-5-5 pure-u-lg-6-24 pure-u-md-6-24">
+                      <div class="form-addon">
+                          <div class="form-addon__addon">
+                              <b class="form-label--required">Case Type </b>
+                          </div>
+                        {{view "select" required="true" content=caseType optionValuePath="content.id"
+                        optionLabelPath="content.txt" value=caseInfo.caseType}}
+                      </div>
+                  </div>
+              </div>
+            </form>
+          </fieldset>
+
+
+            <fieldset id="casePlaintiff" class="pure-u-sm-5-5 pure-u-lg-11-24 pure-u-24-11-24">
+                <legend>Plaintiffs</legend>
+                <form id="plaintiff" class="pure-g">
+                    <div class="form-group pure-u-sm-5-5 pure-u-lg-20-24 pure-u-20-18-24">
+                        <div class="form-addon" >
+                            <div class="form-addon__addon">
+                                <b class="form-label--required">Name </b>
+                            </div>
+                          {{input type="text" disabled=disabledVal required="true" class="form-input" value=plaintiffInfo.plaintiffName
+                          placeholder="Name"}}
+
+                        </div>
+                    </div>
+                    <div class="form-group pure-u-sm-5-5 pure-u-lg-20-24 pure-u-md-20-24">
+                        <div class="form-addon" >
+                            <div class="form-addon__addon">
+                                <b class="form-label--required">Address </b>
+                            </div>
+                          {{textarea type="text" disabled=disabledVal required="true" class="form-input" value=plaintiffInfo.plaintiffAddress cols="20" rows="2"}}
+                        </div>
+                    </div>
+                    <div class="form-footer__cta" >
+                        <button disabled={{disabledVal}} {{action "addPlaintiff"}} class="button">Add</button>
+                    </div>
+
+                    <div class="pure-u-1-1">
+                        <table class="">
+                            <thead>
+                            <tr>
+                                <th>Plaintiff Name</th>
+                                <th>Plaintiff Address</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            {{#each plaintiffArray}}
+                                <tr>
+                                    <td>{{this.fullname}}</td>
+                                    <td>{{this.address}}</td>
+                                    <td><i {{action "removeOnePlaintiff" this.index }} class="{{this.pHideClose}} fa fa-times-circle"></i></td>
+                                </tr>
+                            {{/each}}
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </form>
+            </fieldset>
+
+
+            <fieldset id="caseDefendant" class="pure-u-sm-5-5 pure-u-lg-11-24 pure-u-24-11-24">
+                <legend>Defendants</legend>
+                <form id="defendant" class="pure-g">
+                    <div class="form-group pure-u-sm-5-5 pure-u-lg-20-24 pure-u-20-18-24">
+                        <div class="form-addon" >
+                            <div class="form-addon__addon">
+                                <b class="form-label--required">Name </b>
+                            </div>
+                          {{input type="text" required="true" class="form-input" value=defendantInfo.defendantName
+                          placeholder="Name"}}
+
+                        </div>
+                    </div>
+                    <div class="form-group pure-u-sm-5-5 pure-u-lg-20-24 pure-u-md-20-24">
+                        <div class="form-addon" >
+                            <div class="form-addon__addon">
+                                <b class="form-label--required">Address </b>
+                            </div>
+                          {{textarea type="text" required="true" class="form-input" value=defendantInfo.defendantAddress cols="20" rows="2"}}
+                        </div>
+                    </div>
+                    <div class="form-footer__cta" >
+                        <button {{action "addDefendant"}} class="button">Add</button>
+                    </div>
+
+                    <div class="pure-u-1-1">
+                        <table class="">
+                            <thead>
+                            <tr>
+                                <th>Defendant Name</th>
+                                <th>Defendant Address</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            {{#each defendantArray}}
+                                <tr>
+                                    <td>{{this.fullname}}</td>
+                                    <td>{{this.address}}</td>
+                                    <td><i {{action "removeOneDefendant" this.index }}class="fa
+                                    fa-times-circle"></i></td>
+                                </tr>
+                            {{/each}}
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </form>
+            </fieldset>
+
+          <fieldset id="caseLawyer" class="pure-u-sm-5-5 pure-u-lg-12-24 pure-u-md-12-24">
+              <legend>Plaintiff lawyer</legend>
+            {{lawyer-box  LawyerInfo=pLawyerInfo  lawyersArray=lawyersArray  apiUrl=ApiUrl lawyerType="plaintiff"}}
+          </fieldset>
+
+            <fieldset id="caseLawyer" class="pure-u-sm-5-5 pure-u-lg-11-24 pure-u-md-13-24">
+                <legend>Defendant lawyer</legend>
+
+{{lawyer-box apiUrl=ApiUrl LawyerInfo=dLawyerInfo lawyersArray=lawyersArray lawyerType="defendant"}}
+          </fieldset>
+            <fieldset id="caseJudge" class="pure-u-sm-5-5 pure-u-lg-23-24 pure-u-md-23-24">
+              <legend>Judge</legend>
+              <form id="addJudge" class="pure-g">
+                  <div class="form-group pure-u-sm-5-5 pure-u-lg-18-24 pure-u-md-18-24">
+                    {{input type="checkbox" checked=viewstate.skipAddJudge}}
+                      <b>Skip</b>
+                  </div>
+
+                  <div class="form-group form-group pure-u-sm-5-5 pure-u-lg-6-24 pure-u-md-10-24">
+
+                      <div class="form-addon">
+                          <div class="form-addon__addon">
+                              <b class="form-label--required"></b>
+                          </div>
+                        {{input required="true" type="text" disabled=disableAddJudge class="form-input" value=judgeInfo.judgeName
+                        placeholder="Judge Name"}}
+                      </div>
+                  </div>
+
+                  <div class="form-group pure-u-sm-5-5 pure-u-lg-6-24 pure-u-md-6-24">
+
+                    {{phone-box required=truthy requiredClass=phoneRequired value=judgeInfo.judgeContact1 placeholder="Judge Phone"}}
+                  </div>
+                  <div class="form-group form-group pure-u-sm-5-5 pure-u-lg-6-24 pure-u-md-6-24">
+                      <div class="form-addon">
+                          <div class="form-addon__addon">
+                              <b class="form-label--required"></b>
+                          </div>
+                        {{input required="true" type="email" disabled=disableAddJudge class="form-input" value=judgeInfo.judgeEmail placeholder="Email"}}
+                      </div>
+                  </div>
+                  <div class="form-group pure-u-sm-5-5 pure-u-lg-6-24 pure-u-md-6-24">
+                      <div class="form-addon" >
+                          <div class="form-addon__addon">
+                              <span class="form-label--required">Court</span>
+                          </div>
+                        {{view  "select" content=judgeCourts optionValuePath="content.id"
+                        optionLabelPath="content.txt" required="true" value=judgeInfo.court}}
+
+                      </div>
+                  </div>
+                  <div class="form-group pure-u-sm-5-5 pure-u-lg-6-24 pure-u-md-6-24">
+                      <div class="form-addon" >
+                          <div class="form-addon__addon">
+                              <span class="form-label--required">Court Number</span>
+                          </div>
+                        {{view  "select" content=courtnumber optionValuePath="content.id"
+                        optionLabelPath="content.txt" required="true" value=judgeInfo.courtNumber}}
+
+                      </div>
+                  </div>
+
+                  <div class="form-footer__cta" style="margin-bottom: 10px">
+                      <button {{action "addJudge"}} class="button">Add </button>
+                  </div>
+                  <div class="pure-u-1-1">
+                      <table class="">
+                          <thead>
+                          <tr>
+                              <th>Judge Name</th>
+                              <th>Phone</th>
+                              <th>Court</th>
+                              <th>Court No.</th>
+
+                              <th></th>
+                          </tr>
+                          </thead>
+
+                          <tbody>
+                          {{#each judgesArray}}
+                              <tr>
+                                  <td>{{this.fullname}}</td>
+                                  <td>+233 {{this.phone}}</td>
+                                  <td>{{this.court}}</td>
+                                  <td>{{this.courtnumber}}</td>
+                                  <td><i {{action "removeOneJudge" this.index }}class="fa fa-times-circle"></i></td>
+                              </tr>
+                          {{/each}}
+
+                          </tbody>
+                      </table>
+                  </div>
+              </form>
+          </fieldset>
+            <fieldset id="caseDocuments" class="pure-u-sm-5-5 pure-u-lg-24-24 pure-u-24-24-24">
+                <legend>Documents / Processes</legend>
+                <form id="addDocument" class="pure-g">
+                    <div class="form-group pure-u-sm-5-5 pure-u-lg-8-24 pure-u-md-8-24">
+                        <div class="form-addon" >
+                            <div class="form-addon__addon">
+                                <b class="form-label--required">Process </b>
+                            </div>
+                          {{view  "select" content=documentType optionValuePath="content.id"
+                          optionLabelPath="content.txt"
+                          required="true" value=documentInfo.documentType}}
+
+                        </div>
+                    </div>
+                    <div class="form-group pure-u-sm-5-5 pure-u-lg-6-24 pure-u-md-6-24">
+                        <div class="form-addon" >
+                            <div class="form-addon__addon">
+                                <b class="form-label--required">Date </b>
+                            </div>
+                          {{date-picker  required="true" class="form-input" date=documentInfo
+                          .documentDate format='DD-MM-YYYY'}}
+                        </div>
+                    </div>
+                    <div class="form-group pure-u-sm-5-5 pure-u-lg-8-24 pure-u-md-8-24">
+                        <div class="form-addon" >
+                            <div class="form-addon__addon">
+                                <b class="form-label--required">Filed By </b>
+                            </div>
+                          {{view  "select" content=documentFiler optionValuePath="content.id"
+                          optionLabelPath="content.txt"
+                          required="true" value=documentInfo.documentFiler}}
+                    </div>
+                    </div>
+                    </form>
+                <div class="pure-g">
+                    <div class="form-group pure-u-sm-5-5 pure-u-lg-13-24 pure-u-md-13-24">
+                        <div class="form-addon" >
+                            <div class="form-addon__addon">
+                                <b class="form-label--required">Choose Document </b>
+                            </div>
+                            <form id="uploaderForm" enctype="multipart/form-data">
+                                <input name="uploadedfile" accept="application/pdf"  id="uploadedfile" class="form-input" required="true" type="file" name="file" placeholder=""></form>
+
+                        </div>
+                    </div>
+                    <div class="btnupload pure-u-sm-5-5 pure-u-lg-3-24 pure-u-md-3-24">
+                        <section class="{{viewSwitch.loadingImg}} mod model-4">
+                            <div class="spinner"></div></section>
+                        <button {{action "upload"}} class="{{viewSwitch.uploadBtn}} button">Upload</button>
+
+                    </div>
+                  <div class="{{viewSwitch.loadingImg}} pure-u-sm-5-5 pure-u-lg-13-24 pure-u-md-13-24">
+                      <div class="pbar">
+                          <div class="downloader">
+                              <div class="downloading-progress">
+                                  <div class="downloading-progress-bar" data-value="0" data-max="100"></div>
+                              </div>
+                              <div class="percentage"></div>
+                          </div>
+                      </div>
+                     </div>
+                    </div><br><br>
+
+                <div class="pure-u-1-1">
+                    <table class="pure-table pure-table-striped">
+                        <thead>
+                        <tr>
+
+                            <th>Document / Process Type</th>
+                            <th>Filed By</th>
+                           <th>Upload Status</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {{#each documentArray}}
+                            <tr>
+
+                                <td>{{this.type}}</td>
+                                <td>{{this.filer}}</td>
+
+                                <td>success</td>
+
+                                <td><i {{action "removeOneDocument" this.index }}class="fa fa-times-circle"></i></td>
+                            </tr>
+                        {{/each}}
+
+                        </tbody>
+                    </table>
+                </div>
+            </fieldset>
+            <div class="form-footer__cta pure-u-1-1" >
+                <button {{action "goReview"}} class="button">Proceed</button>
+            </div>
+
+
+          </section>
+    </div>
+
+</div>

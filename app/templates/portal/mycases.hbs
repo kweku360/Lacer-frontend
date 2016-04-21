@@ -1,0 +1,51 @@
+<div class="view-heading pure-u-1-1">
+    <div class="text bolt-light">My Court Cases</div>
+    <div class="breadcrumb flat bolt-light">
+      {{#link-to  'portal' activeClass=""}}
+          Home
+      {{/link-to}}
+      {{#link-to  'portal.mycases'}}
+          My Cases
+      {{/link-to}}
+    </div>
+</div>
+<div class="submenu-box pure-u-5-24" style="border: 0px solid red">
+    <div class="item">
+        <div {{action "createNew"}} class="item-text bolt-light"> Active Cases</div><br>
+
+    </div>
+    <div class="item">
+        <div {{action "manage"}} class="item-text bolt-light">Closed Cases</div><br>
+
+    </div>
+</div>
+<div class="middle-box pure-u-18-24">
+    <br>
+    <div class="portal-table">
+        <table>
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Suit Number</th>
+                <th>Title</th>
+                <th>Presiding judge</th>
+
+            </tr>
+            </thead>
+
+            <tbody>
+            {{#each suitsArray}}
+                <tr class="bolt-light">
+                    <td>{{this.datefiled}}</td>
+                    <td>{{this.suitnumber}}</td>
+                    <td>{{#link-to "portal.documents" (query-params suitid=suitnumber)}}{{this.title}}{{/link-to}}</td>
+                    <td>{{this.judge}}</td>
+                    <td>{{this.suitstatus}}</td>
+
+                </tr>
+            {{/each}}
+
+            </tbody>
+        </table>
+    </div>
+</div>

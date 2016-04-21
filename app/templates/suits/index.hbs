@@ -1,0 +1,32 @@
+<div class="view-heading pure-u-1-1">
+    <div class="text bolt-light">Cases</div>
+    <div class="breadcrumb flat bolt-light">
+      {{!#link-to  'dashboard' activeClass=""}}
+        <!--Home-->
+      {{!/link-to}}
+      {{#link-to  'suits'}}
+          Cases
+      {{/link-to}}
+    </div>
+</div>
+<div class="submenu-box pure-u-sm-1-1 pure-u-lg-5-24 pure-u-md-5-24" >
+    <div {{action "createNew"}} class="item">
+        <div  class="item-text bolt-light"> Create New Case</div>
+        <i class="fa fa-plus fa-2x"></i>
+    </div>
+    <div {{action "manage"}} class="item">
+        <div class="item-text bolt-light"> Manage Cases</div>
+        <i class="fa fa-pencil-square-o fa-2x"></i>
+    </div>
+    <div {{action "review"}} class="item">
+        <div class="item-text bolt-light"> Review Cases</div>
+        <i class="fa fa-eye fa-2x"></i>
+    </div>
+    <!--<div class="item">-->
+       <!---->
+        <!--<b class="number-circle bolt-light">0</b>-->
+    <!--</div>-->
+  </div>
+    <div class="middle-box  pure-u-sm-1-1 pure-u-lg-18-24 pure-u-md-18-24">
+        <img class="coa-big pure-img" src="/assets/images/coasmall.jpg">
+    </div>

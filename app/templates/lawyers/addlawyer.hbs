@@ -1,0 +1,40 @@
+<div class="current-view">
+    ADD LAWYER
+</div>
+<div class="head">
+
+    <span class="tase">SUIT NO. AA56/008 </span>
+    <span class="tasemini">please enter information accurately </span>
+
+</div>
+<form class="pure-form pure-form-aligned">
+    <fieldset class="form-fieldset">
+
+        <div class="pure-control-group">
+            <label for="defendantName">Lawyer  Name</label>
+            <input id="defendantName" type="text" placeholder="">
+        </div>
+
+        <div class="pure-control-group">
+            <label for="defendantAddress">Lawyer Address</label>
+            <textarea id="defendantAddress" style="width: 189px" rows="5" cols="5"></textarea>
+        </div>
+
+        <div class="pure-control-group">
+            <label for="defendantContact">Lawyer Contact</label>
+            <input id="defendantContact" type="TEXT" placeholder="">
+        </div>
+
+
+        <div class="pure-controls control-btns">
+
+          {{#link-to 'suits.entersuit' classNames='pure-button pure-button-primary'}}
+             Go back
+          {{/link-to}}
+
+          {{#link-to 'suits.entersuit' classNames='pure-button pure-button-primary'}}
+             Add Lawyer
+          {{/link-to}}
+        </div>
+    </fieldset>
+</form>

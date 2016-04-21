@@ -1,0 +1,125 @@
+*{margin:0;padding:0;}
+body, html{
+  height:100%;
+}
+
+#login-wrapper{
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  /*background-color: #f6f8f7;*/
+  background-color: #fff;
+}
+
+#login{
+  font-family: "OpenSansBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin:2% auto;
+  margin-bottom:2%;
+  background-color: #f6f8f7;
+  transition:opacity 1s;
+  -webkit-transition:opacity 1s;
+
+  -webkit-box-shadow: 1px 1px 8px 2px rgba(77,77,77,0.52);
+  -moz-box-shadow: 1px 1px 8px 2px rgba(77,77,77,0.52);
+  box-shadow: 1px 1px 8px 2px rgba(77,77,77,0.52);
+}
+#login .logo-img{
+  text-align: center;
+  border: 0px solid red;
+}
+
+
+#login h1{
+  background:#3cac70;
+  padding:20px 0;
+  font-size:140%;
+  font-weight:300;
+  text-align:center;
+  color:#fff;
+}
+#login h3{
+  text-align: center;
+  line-height: 21px;
+  font-weight: bold;
+  padding:5px 0;
+  font-size:100%;
+  color:#336699;
+
+}
+#login .error{
+
+  color: red;
+  font-weight: 200;
+  font-size: 13px;
+  background-color: #ffffff;
+  margin-left: 20px;
+  padding-right: 20px;
+}
+
+
+#login .msg{
+  color: #000;
+  background:whitesmoke;
+  font-weight: 200;
+  padding:6% 4%;
+  font-size:88%;
+}
+#login a{
+  color: #336699;
+  text-decoration: none;
+  font-size: 88%;
+}
+
+#login form{
+
+}
+
+#login input[type="text"],#login  select,#login input[type="email"],#login input[type="password"]{
+  width:92%;
+  background:#fff;
+  margin-bottom:3%;
+  margin-top: 10px;
+  border:1px solid #ccc;
+  padding:3%;
+  font-family:'Open Sans',sans-serif;
+  font-size:95%;
+  color:#555;
+}
+#userPhone{
+  padding: 5px;
+}
+#userPhone input[type="text"],#userRegister input[type="text"],#userRegister  select,#userRegister input[type="email"],#userRegister input[type="password"]{
+  width:92%;
+  background:#fff;
+  margin-bottom:2%;
+  margin-top: 10px;
+  border:0px solid #ccc;
+  padding:1%;
+  font-family:'Open Sans',sans-serif;
+  font-size:95%;
+  color:#555;
+}
+
+#login input[type="submit"]{
+  background:#336699;
+  border:0;
+  padding:2%;
+  font-family:'Open Sans',sans-serif;
+  font-size:100%;
+  color:#fff;
+  border-radius: 7px;
+  cursor:pointer;
+  transition:background .3s;
+  -webkit-transition:background .3s;
+}
+
+#login input[type="submit"]:hover{
+  background:#2288bb;
+}
+.reginput{
+  margin-top: 15px;
+  margin-right: 15px;
+}
+.pure-g{
+  letter-spacing: normal;
+}

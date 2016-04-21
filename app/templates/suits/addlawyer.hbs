@@ -1,0 +1,190 @@
+<div class="view-heading pure-u-1-1">
+    <div class="text bolt-light">Add Lawyer</div>
+    <div class="breadcrumb flat bolt-light">
+      {{#link-to  'suits' activeClass=""}}
+          Home
+      {{/link-to}}
+      {{#link-to  'suits' activeClass=""}}
+          Suits
+      {{/link-to}}
+      {{#link-to  'suits.new' activeClass=""}}
+          New Suit
+      {{/link-to}}
+      {{#link-to  'suits.plaintiffs' activeClass=""}}
+          Add Plaintiff
+      {{/link-to}}
+      {{#link-to  'suits.addlawyer'}}
+          Add Lawyer
+      {{/link-to}}
+    </div>
+</div>
+<div class="submenu-box pure-u-4-24" style="border: 0px solid red">
+  {{suit-detail newSuit=newSuit defendants=newDefendantArray plaintiffs=newPlaintiffArray lawyers=lawyersArray}}
+</div>
+<div class="middle-box pure-u-19-24">
+    <div class="wraps">
+        <section class="section-form">
+            <div class="coa"> <img src="/assets/images/coasmall.jpg"></div>
+            <form name="signup" class="form" id="addLawyer" novalidate>
+                <div class="form-group form-group pure-u-9-24">
+                    <label for="date" class="form-label form-label--required">
+                    Add Lawyer To Case
+                    </label>
+                    <div class="form-addon" data-states-for="name">
+                        <select id="lawyeropt">
+                            <option value="0">Select One</option>
+                            <option value="1">Choose from List</option>
+                            <option value="2">Enter Lawyer Info</option>
+                        </select>
+                    </div>
+                </div>
+
+                    <div id="hidelawyerlist" class="pure-g hideView">
+                      {{input type="hidden" id="isunreg" value=isUnregistered}}
+                    <div class="form-group form-group pure-u-5-24">
+                        <label for="date" class="form-label form-label--required">
+                            Lawyer Type:
+                        </label>
+                        <div class="form-addon" data-states-for="name">
+                          {{view "select" content=lawyerType  required="true" value=lawyerInfo.lawyerType}}
+                        </div>
+                    </div>
+
+                    <div class="form-group pure-u-9-24">
+                        <label for="name" class="form-label form-label--required">
+                            Select Lawyer :
+                        </label>
+                          {{select-2
+                          content=lawyerList
+                          value=listPos
+                          placeholder="Lawyers"
+                          allowClear=true
+                          }}
+                    </div>
+                        <div class="form-footer__cta" style="margin-bottom: 10px">
+
+                            <button {{action "addAnother"}} class="button">Add </button>
+                        </div>
+                    </div>
+
+                    <!--<div class="form-group pure-u-1-1">-->
+                      <!--{{!input type="checkbox" checked=isUnregistered}}-->
+                       <!--<span>Add lawyer</span>-->
+
+                    <!--</div>-->
+
+                    <form class="pure-g hideView" id="addUnregistered">
+                        <div class="form-group form-group pure-u-10-24">
+                        <label for="date" class="form-label form-label--required">
+                            Lawyer Type:
+                        </label>
+                        <div class="form-addon" data-states-for="name">
+                          {{view "select" content=lawyerType  required="true" value=lawyerInfo.lawyerType}}
+                        </div>
+                    </div>
+                        <div class="form-group pure-u-10-24">
+                            <label for="name" class="form-label form-label--required">
+                                LawFirm Name:
+                            </label>
+                            <div class="form-addon">
+                                <div class="form-addon__addon">
+                                    <i class="fa fa-clone"></i>
+                                </div>
+                              {{input type="text" required="true" class="form-input" value=lawyerInfo.lawfirmName
+                              placeholder="Name"}}
+                            </div>
+                        </div>
+                        <div class="form-group pure-u-10-24">
+                            <label for="name" class="form-label form-label--required">
+                                Lawyer Name:
+                            </label>
+                            <div class="form-addon">
+                                <div class="form-addon__addon">
+                                    <i class="fa fa-clone"></i>
+                                </div>
+                              {{input type="text" required="true" class="form-input" value=lawyerInfo.lawyerName
+                              placeholder="Name"}}
+                            </div>
+                        </div>
+                        <div class="form-group pure-u-10-24">
+                            <label for="name" class="form-label form-label--required">
+                                Phone Number:
+                            </label>
+                            <div class="form-addon">
+                                <div class="form-addon__addon">
+                                    <span class="bolt-light">+233 </span>
+                                </div>
+                              {{input class="form-input"  data-parsley-type="digits" data-parsley-minlength="10" data-parsley-maxlength="10" required="true" value=lawyerInfo.lawyerContact1 placeholder="mobile"}}
+                            </div>
+                        </div>
+                        <div class="form-group pure-u-10-24">
+                            <label for="name" class="form-label form-label--required">
+                                Email:
+                            </label>
+                            <div class="form-addon">
+                              {{input type="email" required="true" class="form-input" value=lawyerInfo.lawyerEmail
+                              placeholder="email"}}
+                            </div>
+                        </div>
+                        <div class="form-group pure-u-10-24">
+                            <label for="name" class="form-label form-label--required">
+                                Laywer / Lawfirm Address:
+                            </label>
+                            <div class="form-addon">
+                              {{textarea class="form-input pure-u-10-24" value=lawyerInfo.lawyerAddress rows="2"}}
+                            </div>
+                        </div>
+                        <div class="form-footer__cta" style="margin-bottom: 10px">
+
+                            <button {{action "addAnother"}} class="button">Add </button>
+
+                        </div>
+                    </form>
+                <div class="form-footer__cta" style="margin-bottom: 10px">
+                    <button {{action "goBack"}} class="button">Back</button>
+                    <button {{action "proceed"}} class="button">Proceed</button>
+                </div>
+
+
+
+
+                <div class="pure-u-1-1">
+                    <table class="">
+                        <thead>
+                        <tr>
+                            <th>Lawfirm</th>
+                            <th>Lawyer Name</th>
+                            <th>Lawyer Type</th>
+                            <th>Lawyer Email</th>
+                            <th>Lawyer Address</th>
+                            <th>Phone Number</th>
+
+                            <th></th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {{#each lawyersArray}}
+                            <tr>
+                                <td>{{this.lawfirmName}}</td>
+                                <td>{{this.lawyerName}}</td>
+                                <td>{{this.lawyertype}}</td>
+                                <td>{{this.lawyerEmail}}</td>
+                                <td>{{this.lawyerAddress}}</td>
+                                <td>{{this.lawyerContact1}}</td>
+                                <td><i {{action "removeOne" this.index }}class="fa fa-times-circle"></i></td>
+                            </tr>
+                        {{/each}}
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+
+            </form></section>
+    </div>
+
+</div>
+

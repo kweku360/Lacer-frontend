@@ -1,0 +1,51 @@
+<div class="view-heading pure-u-1-1">
+    <div class="text bolt-light">Archive Case {{suitInfo.suitNumber}}</div>
+    <div class="breadcrumb flat flat bolt-light">
+      {{#link-to  'suits' activeClass=""}}
+          Home
+      {{/link-to}}
+      {{#link-to  'manage' activeClass=""}}
+        Manage Cases
+    {{/link-to}}
+      {{#link-to  'manage.archive'}}
+          Archive Case
+    {{/link-to}}
+        </div>
+</div>
+
+<div class="middle-box pure-u-19-24">
+    <div class="wraps">
+        <section class="section-form">
+            <!--<p>-->
+                <!--Please Enter Information Accurately-->
+            <!--</p>-->
+          <div class="coa"> <img src="/assets/images/coasmall.jpg"></div>
+            <form name="signup" class=" form" id="newSuit" novalidate>
+                <div class="pure-g">
+                    <div class="form-group pure-u-3-5">
+                      <b>No Process Filed For Case to be Archived</b>
+
+                    </div>
+                    <div class="form-group form-group pure-u-3-5">
+                        <label for="date" class="form-label form-label--required">
+                            Date Archived:
+                        </label>
+                        <div class="form-addon">
+                            <div class="form-addon__addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                          {{date-picker  required="true" class="form-input" date=suitInfo.suitDate format='DD-MM-YYYY'}}
+                            <!--<input value="" type="text" id="date" class="form-input" placeholder="choose Date">-->
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-footer__cta">
+                    <button type="submit" {{action "next"}} class="button">Archive Case</button>
+                </div>
+
+            </form></section>
+    </div>
+
+</div>

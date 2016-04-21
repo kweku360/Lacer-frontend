@@ -1,0 +1,31 @@
+<div class="view-heading pure-u-1-1">
+    <div class="text bolt-light">Case Document</div>
+    <div class="breadcrumb flat bolt-light">
+      {{#link-to  'portal' activeClass=""}}
+          Home
+      {{/link-to}}
+      {{#link-to  'portal.courtcases'}}
+          Court Cases
+      {{/link-to}}
+    </div>
+</div>
+<div class="submenu-box pure-u-5-24" style="border: 0px solid red">
+    <div class="item">
+        <div {{action "createNew"}} class="item-text bolt-light"> Court Of Appeals</div><br>
+
+    </div>
+    <div class="item">
+        <div {{action "manage"}} class="item-text bolt-light">High Court</div><br>
+
+    </div>
+    <div class="item">
+        <div {{action "view"}} class="item-text bolt-light">Supreme Court</div><br>
+
+    </div>
+</div>
+<div class="middle-box pure-u-18-24">
+    <iframe width="500" height="500" src="http://localhost:8888/viewer/web/viewer.html">
+
+    </iframe>
+
+</div>

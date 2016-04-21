@@ -1,0 +1,90 @@
+<div class="view-heading pure-u-1-1">
+    <div class="text bolt-light">Defendant</div>
+    <div class="breadcrumb flat bolt-light">
+      {{#link-to  'suits' activeClass=""}}
+          Home
+      {{/link-to}}
+      {{#link-to  'manage' activeClass=""}}
+          Manage Suits
+      {{/link-to}}
+      {{#link-to  'manage.defendants'}}
+          Defendant
+      {{/link-to}}
+       </div>
+</div>
+<div class="submenu-box pure-u-4-24">
+  {{manage-detail action=""}}
+</div>
+<div class="middle-box pure-u-19-24">
+    <div class="wraps">
+        <section class="section-form">
+            <!--<p>-->
+            <!--Please Enter Information Accurately-->
+            <!--</p>-->
+            <div class="coa"> <img src="/assets/images/coasmall.jpg"></div>
+            <form name="signup" class="form" id="addDefendant" novalidate>
+                <div style="border: 0px solid red" class="pure-g">
+                    <div class="form-group pure-u-10-24">
+                        <label for="name" class="form-label form-label--required">
+                            Defendant Name:
+                        </label>
+                        <div class="form-addon">
+                            <div class="form-addon__addon">
+                                <i class="fa fa-clone"></i>
+                            </div>
+                          {{input type="text" required="true" class="form-input" value=defendantInfo.defendantName
+                          placeholder="Name"}}
+
+                        </div>
+                    </div>
+                    <div class="form-group pure-u-10-24">
+                        <label for="name" class="form-label form-label--required">
+                            Defendant Address :
+                        </label>
+                        <div class="form-addon" data-states-for="name">
+                            <div class="form-addon__addon">
+                                <i class="fa fa-home"></i>
+                            </div>
+                          {{textarea type="text" required="true" class="form-input" value=defendantInfo.defendantAddress cols="20" rows="2"}}
+                        </div>
+                    </div>
+                    <div class="form-footer__cta pure-u-10-24">
+                      <button {{action "addAnother"}} class="{{addToggle}} button">Add</button>
+                        <button {{action "update" defendantInfo.defendantIndex}} class="{{saveToggle}}
+                        button">Save</button>
+                        <button {{action "cancel"}} class="{{saveToggle}} button">Cancel</button>
+                    </div>
+                </div>
+              <div class="pure-u-1-1">
+                  <table class="pure-table pure-table-striped">
+                      <thead>
+                      <tr>
+                          <th>Defendant Name</th>
+                          <th>Defendant Address</th>
+                          <th></th>
+                      </tr>
+                      </thead>
+
+                      <tbody>
+                      {{#each defendantArray}}
+                          <tr>
+                              <td>{{this.fullname}}</td>
+                              <td>{{this.address}}</td>
+                              <td>
+                                  <i {{action "editOne" this.index }}class="fa fa-pencil-square-o"></i>
+                                  <i {{action "removeOne" this.index }}class="fa fa-times-circle"></i>
+                            </td>
+                          </tr>
+                      {{/each}}
+
+                      </tbody>
+                  </table>
+              </div>
+
+
+
+            </form></section>
+    </div>
+
+</div>
+

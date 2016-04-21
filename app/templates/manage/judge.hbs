@@ -1,0 +1,136 @@
+<div class="view-heading pure-u-1-1">
+    <div class="text bolt-light">Add Judge</div>
+    <div class="breadcrumb flat bolt-light">
+      {{#link-to  'suits'}}
+          Home
+      {{/link-to}}
+      {{#link-to  'manage'}}
+          Manage Suits
+      {{/link-to}}
+  {{#link-to  'judges'}}
+          Manage Judge
+      {{/link-to}}
+
+    </div>
+</div>
+<div class="submenu-box pure-u-4-24">
+  {{manage-detail action=""}}
+</div>
+<div class="middle-box pure-u-19-24">
+    <div class="wraps">
+        <section class="section-form">
+            <div class="coa"> <img src="/assets/images/coasmall.jpg"></div>
+            <form name="signup" class="form" id="addJudge" novalidate>
+                <div class="pure-g">
+                    <div class="form-group pure-u-6-24">
+                        <label for="name" class="form-label form-label--required">
+                            Judge Name:
+                        </label>
+                        <div class="form-addon">
+                            <div class="form-addon__addon">
+                                <i class="fa fa-clone"></i>
+                            </div>
+                          {{input type="text" required="true" class="form-input" value=judgeInfo.judgeName
+                          placeholder="Name"}}
+                        </div>
+                    </div>
+                    <div class="form-group pure-u-6-24">
+                        <label for="name" class="form-label form-label--required">
+                            Court :
+                        </label>
+                        <div class="form-addon" >
+                          {{view  "select" content=courts optionValuePath="content.id"
+                          optionLabelPath="content.txt" required="true" value=judgeInfo.court}}
+
+                        </div>
+                    </div>
+                    <div class="form-group pure-u-6-24">
+                        <label for="name" class="form-label form-label--required">
+                            Court Number:
+                        </label>
+                        <div class="form-addon" >
+                          {{view  "select" content=courtnumber optionValuePath="content.id"
+                          optionLabelPath="content.txt"
+                          required="true" value=judgeInfo.courtNumber}}
+
+                        </div>
+                    </div>
+                    <div class="form-group form-group pure-u-6-24">
+                        <label for="date" class="form-label ">
+                            Email :
+                        </label>
+                        <div class="form-addon">
+                          {{input type="email" required="true" class="form-input" value=judgeInfo.judgeEmail
+                          placeholder="email"}}
+                        </div>
+                    </div>
+                    <div class="form-group pure-u-6-24">
+                        <label for="name" class="form-label form-label--required">
+                            Judge Address :
+                        </label>
+                        <div class="form-addon" data-states-for="name">
+                            <div class="form-addon__addon">
+                                <i class="fa fa-home"></i>
+                            </div>
+                          {{input type="text" required="true" class="form-input" value=judgeInfo.judgeAddress
+                          placeholder="Address"}}
+                        </div>
+                    </div>
+                    <div style="margin-right: 50px"  class="form-group form-group pure-u-6-24">
+                        <label for="date" class="form-label form-label--required">
+                            Phone Number:
+                        </label>
+                        <div class="form-addon" data-states-for="name">
+                            <div class="form-addon__addon">
+                                <span class="">+233</span>
+                            </div>
+                          {{input required="true" type="text" disabled=disableAddJudge data-parsley-type="digits" data-parsley-minlength="10" data-parsley-maxlength="10" class="form-input" value=judgeInfo.judgeContact1
+                          placeholder="Judge Phone"}}</div>
+                    </div>
+
+                    <div  class="form-group pure-u-6-24 form-footer__cta" style="margin-bottom: 10px">
+
+                        <button {{action "addAnother"}} class="button">Add Judge</button>
+
+                    </div>
+
+                </div>
+                <div class="pure-u-1-1">
+                    <table class="pure-table pure-table-striped">
+                        <thead>
+                        <tr>
+                            <th>Judge Name</th>
+                            <th>Court</th>
+                            <th>Court Number</th>
+                            <th>Phone</th>
+                            <!--<th></th>-->
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {{#each judgesArray}}
+                            <tr>
+                                <td>{{this.fullname}}</td>
+                                <td>{{this.court}}</td>
+                                <td>{{this.courtnumber}}</td>
+                                <td>{{this.phone}}</td>
+                                <!--<td>-->
+                                <!--<i {{action "removeOne" this.index }}class="fa fa-times-circle"></i>-->
+                                <!--<i {{action "editOne" this.index }}class="fa fa-pencil-square-o"></i>-->
+                                <!--</td>-->
+                            </tr>
+                        {{/each}}
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+
+            </form></section>
+    </div>
+
+</div>
+
+

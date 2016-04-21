@@ -1,0 +1,37 @@
+<div class="current-view">
+    ADD JUDGE
+</div>
+<div class="head">
+
+    <span class="tase"> </span>
+    <span class="tasemini">please enter information accurately </span>
+
+</div>
+<form class="pure-form pure-form-aligned">
+    <fieldset class="form-fieldset">
+
+        <div class="pure-control-group">
+            <label for="defendantName">Judge  Name</label>
+            <input id="defendantName" type="text" placeholder="">
+        </div>
+
+        <div class="pure-control-group">
+            <label for="defendantAddress">Judge Address</label>
+            <textarea id="defendantAddress" style="width: 189px" rows="5" cols="5"></textarea>
+        </div>
+
+        <div class="pure-control-group">
+            <label for="defendantContact">Judge Contact</label>
+            <input id="defendantContact" type="TEXT" placeholder="">
+        </div>
+
+
+        <div class="pure-controls control-btns">
+
+
+          {{#link-to 'judges.addjudge' classNames='pure-button pure-button-primary'}}
+             Add Judge
+          {{/link-to}}
+        </div>
+    </fieldset>
+</form>

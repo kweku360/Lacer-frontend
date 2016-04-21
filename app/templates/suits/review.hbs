@@ -1,0 +1,44 @@
+<div class="view-heading pure-u-1-1">
+    <div class="text bolt-light">Review Cases</div>
+    <div class="breadcrumb flat bolt-light">
+      {{#link-to  'suits' activeClass=""}}
+          Cases
+      {{/link-to}}
+      {{#link-to  'suits.review'}}
+          Review Case
+      {{/link-to}}
+    </div>
+</div>
+<div class="middle-box pure-u-24-24">
+    <br>
+    <div class="form-group pure-u-2-5">
+
+    </div>
+    <br>
+    <div class="portal-table">
+        <table>
+            <thead>
+            <tr>
+                <th>Case Number</th>
+                <th>Case Title</th>
+                <th>Case Date</th>
+                <th></th>
+
+            </tr>
+            </thead>
+
+            <tbody>
+            {{#each suitsArray}}
+                <tr class="bolt-light">
+                    <td>{{this.suitnumber}}</td>
+                    <td>{{this.title}}</td>
+                    <td>{{this.datefiled}}</td>
+                    <td>{{#link-to "suits.reviewdetail" (query-params suitid=suitnumber)}}REVIEW NOW{{/link-to}}</td>
+                </tr>
+            {{/each}}
+
+            </tbody>
+        </table>
+    </div>
+</div>
+

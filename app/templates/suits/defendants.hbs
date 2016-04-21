@@ -1,0 +1,125 @@
+<div class="view-heading pure-u-1-1">
+    <div class="text bolt-light">Add Defendant</div>
+    <div class="breadcrumb flat bolt-light">
+      {{#link-to  'suits' activeClass=""}}
+          Home
+      {{/link-to}}
+      {{#link-to  'suits' activeClass=""}}
+          Suits
+      {{/link-to}}
+      {{#link-to  'suits.new'}}
+          New Suit
+      {{/link-to}}
+      {{#link-to  'suits.plaintiffs'}}
+          Add plaintiff
+      {{/link-to}}
+      {{#link-to  'suits.addlawyer'}}
+          Add Lawyer
+      {{/link-to}}
+      {{#link-to  'suits.defendants'}}
+          Add Defendant
+      {{/link-to}}
+    </div>
+</div>
+<div class="submenu-box pure-u-4-24">
+  {{suit-detail newSuit=newSuit plaintiffs=newPlaintiffArray defendants=defendantArray lawyers=newLawyerArray}}
+</div>
+<div class="middle-box pure-u-19-24">
+    <div class="wraps">
+        <section class="section-form">
+            <!--<p>-->
+            <!--Please Enter Information Accurately-->
+            <!--</p>-->
+            <div class="coa"> <img src="/assets/images/coasmall.jpg"></div>
+            <form name="signup" class="form" id="addDefendant" novalidate>
+                <div style="border: 0px solid red" class="pure-g">
+                    <div class="form-group pure-u-10-24">
+                        <label for="name" class="form-label form-label--required">
+                            Defendant Name:
+                        </label>
+                        <div class="form-addon">
+                            <div class="form-addon__addon">
+                                <i class="fa fa-clone"></i>
+                            </div>
+                          {{input type="text" required="true" class="form-input" value=defendantInfo.defendantName
+                          placeholder="Name"}}
+
+                        </div>
+                    </div>
+                    <div class="form-group pure-u-10-24">
+                        <label for="name" class="form-label form-label--required">
+                            Defendant Address :
+                        </label>
+                        <div class="form-addon" data-states-for="name">
+                            <div class="form-addon__addon">
+                                <i class="fa fa-home"></i>
+                            </div>
+
+                          {{input type="text" required="true" class="form-input" value=defendantInfo.defendantAddress
+                          placeholder="Address"}}
+                        </div>
+                    </div>
+                    <!--<div class="form-group form-group pure-u-5-24">-->
+                        <!--<label for="date" class="form-label form-label--required">-->
+                            <!--Phone Number 1:-->
+                        <!--</label>-->
+                        <!--<div class="form-addon" data-states-for="name">-->
+                            <!--<div class="form-addon__addon">-->
+                                <!--+233-->
+                            <!--</div>-->
+                          <!--{{!input type="number" data-parsley-minlength="6" required="true" class="form-input" value=defendantInfo.defendantContact1-->
+                          <!--placeholder="landline"}}-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group form-group pure-u-5-24">-->
+                        <!--<label for="date" class="form-label ">-->
+                            <!--Phone Number 2:-->
+                        <!--</label>-->
+                        <!--<div class="form-addon" data-states-for="name">-->
+                            <!--<div class="form-addon__addon">-->
+                                <!--+233-->
+                            <!--</div>-->
+                          <!--{{!input type="number" minlength="6" required="true" class="form-input"
+                          value=defendantInfo-->
+                          <!--.defendantContact2-->
+                          <!--placeholder="mobile"}}-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <div class="form-footer__cta" >
+                        <button {{action "addAnother"}} class="button">Add</button>
+                        <div class="form-footer-right">
+                            <button {{action "back"}} class="button">Back</button>
+                            <button {{action "proceed"}} class="button">Proceed</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="pure-u-1-1">
+                    <table class="">
+                        <thead>
+                        <tr>
+                            <th>Defendant Name</th>
+                            <th>Defendant Address</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {{#each defendantArray}}
+                            <tr>
+                                <td>{{this.fullname}}</td>
+                                <td>{{this.address}}</td>
+                                <td><i {{action "removeOne" this.index }}class="fa fa-times-circle"></i></td>
+                            </tr>
+                        {{/each}}
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+            </form></section>
+    </div>
+
+</div>
+

@@ -1,0 +1,55 @@
+<div class="view-heading pure-u-1-1">
+    <div class="text bolt-light">{{suitInfo.suitNumber}} Notifications</div>
+    <div class="breadcrumb flat flat bolt-light">
+      {{#link-to  'suits' activeClass=""}}
+          Home
+      {{/link-to}}
+      {{#link-to  'manage' activeClass=""}}
+        Manage Cases
+    {{/link-to}}
+      {{#link-to  'manage.notifications'}}
+          Case Notifications
+    {{/link-to}}
+        </div>
+</div>
+
+<div class="middle-box pure-u-19-24">
+    <div class="wraps">
+        <section class="section-form">
+            <!--<p>-->
+                <!--Please Enter Information Accurately-->
+            <!--</p>-->
+          <div class="coa"> <img src="/assets/images/coasmall.jpg"></div>
+            <div class="pure-u-1-1">
+                <table class="pure-table pure-table-striped">
+                    <thead>
+                    <tr>
+                        <th>Notification Type</th>
+                        <th>Recipients</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+{{#each notificationsArray}}
+                        <tr>
+                            <td>{{this.type}}</td>
+                            <td>{{this.recipientsFormated}}</td>
+                            <td>{{this.status}}</td>
+                            <td>
+                                <button {{action "sendsms" this.index}} class="{{this.authbtn}} button">Authorize</button>
+
+                                <button {{action "showDetails" this.id}} class="{{this.detailbtn}}
+                                button">details</button>
+                            </td>
+                        </tr>
+
+                        {{/each}}</tbody>
+                </table>
+                <div class="form-footer__cta">
+                </div>
+            </div>
+    </section>
+    </div>
+
+</div>

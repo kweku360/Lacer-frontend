@@ -1,0 +1,135 @@
+<div class="{{isOverlay}} lacer-overlay">
+    <section class="mod model-4">
+        <div class="spinner"></div>
+        <span>{{overlayMsg}}</span>
+    </section>
+</div>
+    <div class="pure-u-1-1">
+        <table class="">
+            <thead>
+            <tr>
+                <th>Lawfirm Name</th>
+                <th>Lawfirm Contact</th>
+                <th>Lawyer Name</th>
+                <th>Phone Number</th>
+                <th>email</th>
+                <th>Address</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each suitLawyersArray}}
+                <tr>
+                    <td>{{this.lawFirmName}}</td>
+                    <td>{{this.lawFirmContact}}</td>
+                    <td>{{this.lawyerName}}</td>
+                    <td>+233 {{this.lawyerContact1}}</td>
+                    <td>{{this.lawyerEmail}}</td>
+                    <td>{{this.lawyerAddress}}</td>
+                    <td>
+                        <i {{action "editOneLawyer" this.lawyerContact1 }}class="fa fa-pencil-square-o"></i>
+                        <i {{action "removeOneLawyer" this.lawyerContact1 }}class="removediag fa
+                        fa-times-circle"></i>
+                    </td>
+
+                </tr>
+            {{/each}}
+
+            </tbody>
+        </table>
+    </div>
+    <div class="form-footer__cta">
+        <button {{action "showAddLawyer"}} class="{{lawyerState.addnew}} button">Add New</button>
+    </div>
+
+    <!--start plaintiff lawyer form-->
+
+    <form id="addLawyerForm" class="{{lawyerState.form}} pure-g">
+        <div class="form-group form-group pure-u-sm-5-5 pure-u-lg-10-24 pure-u-md-10-24">
+
+            <div class="form-addon">
+              {{input type="text" class="form-input" value=LawyerInfo.lawFirmName
+              placeholder="Law firm Name"}}
+            </div>
+        </div>
+        <div class="form-group pure-u-sm-5-5 pure-u-lg-10-24 pure-u-md-10-24">
+
+            <div class="form-addon">
+              {{phone-box value=LawyerInfo.lawFirmContact requiredClass=phoneNotRequired placeholder="Law Firm Phone"}}
+                <!--<div class="form-addon__addon">-->
+                    <!--<span class="">+233</span>-->
+                <!--</div>-->
+              <!--{{!input type="text" data-parsley-type="digits" data-parsley-minlength="10" data-parsley-maxlength="10" class="form-input" value=LawyerInfo.lawFirmContact-->
+              <!--placeholder="Law Firm Phone"}}-->
+            </div>
+        </div>
+        <div class="form-group form-group pure-u-sm-5-5 pure-u-lg-10-24 pure-u-md-10-24">
+
+            <div class="form-addon">
+                <div class="form-addon__addon">
+                    <b class="form-label--required"></b>
+                </div>
+              {{input type="text" required="true" class="form-input" value=LawyerInfo.lawyerName
+              placeholder="Lawyer Name"}}
+            </div>
+        </div>
+        <div class="form-group pure-u-sm-5-5 pure-u-lg-10-24 pure-u-md-10-24">
+
+            <div class="form-addon">
+              {{phone-box required=truthy requiredClass=phoneRequired value=LawyerInfo.lawyerContact1 placeholder="Lawyer Phone"}}
+                <!--<div class="form-addon__addon">-->
+                    <!--<span class="form-label--required">+233</span>-->
+                <!--</div>-->
+              <!--{{!input required="true" data-parsley-type="digits" data-parsley-minlength="10" data-parsley-maxlength="10" type="text" class="form-input" value=LawyerInfo.lawyerContact1-->
+              <!--placeholder="Lawyer Phone"}}-->
+            </div>
+        </div>
+        <div class="form-group form-group pure-u-sm-5-5 pure-u-lg-10-24 pure-u-md-10-24">
+            <div class="form-addon">
+                <div class="form-addon__addon">
+                    <b class="form-label--required"></b>
+                </div>
+              {{input type="email" required="true" class="form-input" value=LawyerInfo.lawyerEmail
+              placeholder="Email"}}
+            </div>
+        </div>
+        <div class="form-group pure-u-sm-5-5 pure-u-lg-10-24 pure-u-md-10-24">
+
+            <div class="form-addon">
+                <div class="form-addon__addon">
+                    <span class=""></span>
+                </div>
+              {{textarea  placeholder="Lawyer / Law firm Address" type="text" required="true" class="form-input" value=LawyerInfo.lawyerAddress cols="20" rows="2"}}
+            </div>
+        </div>
+        <div class="form-footer__cta">
+            <button {{action "addLawyerForm"}} class="{{isEditFalse}} button">Add </button>
+            <button {{action "lawyerList"}} class="{{isEditFalse}} button">Lawyer List </button>
+            <button {{action "cancelAddLawyerForm"}} class="{{isEditFalse}} button">Cancel </button>
+
+            <button {{action "Update"}} class="{{isEditTrue}} button">Save</button>
+            <button {{action "cancelUpdate"}} class="{{isEditTrue}} button">Cancel </button>
+        </div>
+    </form>
+
+    <!--END plaintiff lawyer form-->
+
+    <form id="addPLawyerSelect" class="{{lawyerState.list}} pure-g">
+        <div class="form-group pure-u-sm-5-5 pure-u-lg-18-24 pure-u-md-18-24">
+        </div>
+        <div class="form-group pure-u-sm-5-5 pure-u-lg-20-24 pure-u-md-20-24">
+            <div class="form-addon__addon">
+                <b class="form-label--required">Select Lawyer </b>
+            </div>
+          {{select-2
+          content=lawyerList
+          value=listPos
+          placeholder="Lawyers"
+          allowClear=true
+          }}
+        </div>
+        <div class="form-footer__cta" style="margin-bottom: 10px">
+            <button {{action "addLawyerSelect"}} class="button">Add </button>
+            <button {{action "cancelLawyerSelect"}} class="button">Cancel </button>
+        </div>
+    </form>

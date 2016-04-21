@@ -1,0 +1,47 @@
+<div class="current-view">
+    ADD DOCUMENT
+</div>
+<div class="head">
+
+    <span class="tase">SUIT NO. AA56/008</span>
+    <span class="tasemini">Please Enter Document Details </span>
+
+</div>
+<form class="pure-form pure-form-aligned">
+    <fieldset class="form-fieldset">
+        <div class="pure-control-group">
+            <label for="documenttype">Document Type</label>
+            <input id="documenttype" type="text" placeholder="">
+        </div>
+        <div class="pure-control-group">
+            <label for="documentName">Document Name</label>
+            <input id="documentName" type="text" placeholder="">
+        </div>
+        <div class="pure-control-group">
+            <label for="dateFiled">Date Filed</label>
+            <input id="dateFiled" type="text" placeholder="">
+        </div>
+        <div class="pure-control-group">
+            <label for="documentFormat">Access Rights</label>
+            <Select id="documentFormat" placeholder="">
+                <option>Public</option>
+                <option>Confidential</option>
+            </Select>
+        </div>
+        <div class="pure-control-group">
+            <label for="documentFormat">Format</label>
+            <Select id="documentFormat" placeholder="">
+                <option>PDF</option>
+                <option>Image</option>
+            </Select>
+        </div>
+        <div class="pure-controls control-btns">
+         {{#link-to  'documents.entersuit' classNames='pure-button pure-button-primary'}}
+             Go back
+          {{/link-to}}
+          {{#link-to  'documents.upload' classNames='pure-button pure-button-primary'}}
+             Proceed
+          {{/link-to}}
+        </div>
+    </fieldset>
+</form>

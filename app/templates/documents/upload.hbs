@@ -1,0 +1,26 @@
+<div class="current-view">
+    ADD DOCUMENT
+</div>
+<div class="head">
+
+    <span class="tase">SUIT NO. AA56/008</span>
+    <span class="tasemini">Upload Document</span>
+
+</div>
+<form class="pure-form pure-form-aligned">
+    <fieldset class="form-fieldset">
+        <div class="pure-control-group">
+            <label for="documenttype">Choose Document</label>
+            <input id="documenttype" type="file" placeholder="">
+        </div>
+
+        <div class="pure-controls control-btns">
+         {{#link-to  'documents.entersuit' classNames='pure-button pure-button-primary'}}
+             Go back
+          {{/link-to}}
+          {{#link-to  'documents.entersuit' classNames='pure-button pure-button-primary'}}
+             Upload
+          {{/link-to}}
+        </div>
+    </fieldset>
+</form>

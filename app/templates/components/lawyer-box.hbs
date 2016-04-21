@@ -1,0 +1,112 @@
+
+<form id="{{lawyerType}}Form" class="{{formDSwitch}}{{formPSwitch}} pure-g">
+    <div class="form-group form-group pure-u-sm-5-5 pure-u-lg-11-24 pure-u-md-11-24">
+
+        <div class="form-addon">
+          {{input type="text" class="form-input" value=LawyerInfo.lawFirmName
+          placeholder="Law firm Name"}}
+        </div>
+    </div>
+    <div class="form-group pure-u-sm-5-5 pure-u-lg-11-24 pure-u-md-11-24">
+
+        <div class="form-addon">
+          {{phone-box value=LawyerInfo.lawFirmContact requiredClass=phoneNotRequired placeholder="Law Firm Phone"}}
+          {{!phone-box value=LawyerInfo.lawFirmContact required="false" placeholder="Law Firm Phone"}}
+          {{!input type="text" data-parsley-type="digits" data-parsley-minlength="10" data-parsley-maxlength="10" class="form-input" value=LawyerInfo.lawFirmContact
+          placeholder="Law Firm Phone"}}
+        </div>
+    </div>
+    <div class="form-group form-group pure-u-sm-5-5 pure-u-lg-11-24 pure-u-md-11-24">
+
+        <div class="form-addon">
+            <div class="form-addon__addon">
+                <b class="form-label--required"></b>
+            </div>
+          {{input type="text" required="false" class="form-input" value=LawyerInfo.lawyerName
+          placeholder="Lawyer Name"}}
+        </div>
+    </div>
+    <div class="form-group pure-u-sm-5-5 pure-u-lg-11-24 pure-u-md-11-24">
+
+      {{phone-box required=truthy requiredClass=phoneRequired value=LawyerInfo.lawyerContact1 placeholder="Lawyer
+      Phone"}}
+    </div>
+    <div class="form-group form-group pure-u-sm-5-5 pure-u-lg-11-24 pure-u-md-11-24">
+        <div class="form-addon">
+            <div class="form-addon__addon">
+                <b class="form-label--required"></b>
+            </div>
+          {{input type="email" required="true" class="form-input" value=LawyerInfo.lawyerEmail
+          placeholder="Email"}}
+        </div>
+    </div>
+    <div class="form-group pure-u-sm-5-5 pure-u-lg-11-24 pure-u-md-11-24">
+
+        <div class="form-addon">
+            <div class="form-addon__addon">
+                <span class=""></span>
+            </div>
+          {{textarea  placeholder="Lawyer / Law firm Address" type="text" required="true" class="form-input" value=LawyerInfo.lawyerAddress cols="20" rows="2"}}
+        </div>
+    </div>
+    <div class="form-footer__cta" style="margin-bottom: 10px">
+        <button {{action "addLawyerForm"}} class="button">Add </button>
+        <button {{action "lawyerList"}} class="button">Lawyer List </button>
+    </div>
+</form>
+
+
+<form id="addLawyerSelect" class="{{selectDSwitch}}{{selectPSwitch}} pure-g">
+    <div class="form-group pure-u-sm-5-5 pure-u-lg-20-24 pure-u-md-20-24">
+        <div class="form-addon__addon">
+            <b class="form-label--required">Select Lawyer </b>
+        </div>
+      {{select-2
+      content=lawyerList
+      value=dlistPos
+      placeholder="Lawyers"
+      allowClear=true
+      }}
+    </div>
+    <div class="form-footer__cta" style="margin-bottom: 10px">
+        <button {{action "addLawyerSelect"}} class="button">Add New</button>
+        <button {{action "cancelLawyerSelect"}} class="button">Cancel </button>
+    </div>
+</form>
+
+<div class="pure-u-1-1">
+    <table class="">
+        <thead>
+        <tr>
+            <th>Lawyer Name</th>
+
+            <th>Phone Number</th>
+            <th>Email</th>
+            <th></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {{#if lawyerTypeCheck}}
+          {{#each plaintiffLawyersArray}}
+              <tr>
+                  <td>{{this.lawyerName}}</td>
+                  <td>+233 {{this.lawyerContact1}}</td>
+                  <td>{{this.lawyerEmail}}</td>
+
+                  <td><i {{action "removeOnePLawyer" this.lawyerContact1}}class="fa fa-times-circle"></i></td>
+              </tr>
+          {{/each}}
+          {{else}}
+          {{#each defendantLawyersArray}}
+              <tr>
+                  <td>{{this.lawyerName}}</td>
+                  <td>+233 {{this.lawyerContact1}}</td>
+                  <td>{{this.lawyerEmail}}</td>
+                  <td><i {{action "removeOneDLawyer" this.lawyerContact1}}class="fa fa-times-circle"></i></td>
+              </tr>
+          {{/each}}
+          {{/if}}
+        </tbody>
+    </table>
+</div>
